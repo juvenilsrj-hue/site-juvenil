@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Juvenill — Líder Comercial Automotivo</title>
+  <meta name="description" content="Mais de 18 anos transformando equipes e resultados no setor automotivo. De vendedor a diretor, da prospecção à recompra." />
+  <meta property="og:title" content="Juvenill — Líder Comercial Automotivo" />
+  <meta property="og:description" content="Mentoria e consultoria em gestão comercial, vendas e pós-vendas para concessionárias de alta performance." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/preview.png" />
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind via CDN (sem build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    /* ===========================================================
+       TOKENS DA MARCA (extraídos do site original)
+       Edite as cores aqui para mudar o tema do site inteiro.
+       =========================================================== */
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#0B1521',                                  /* Azul Profundo intensificado (base dominante) */
+            foreground: '#F4F0E8',                                  /* Areia (texto sobre fundo escuro) */
+            brand: { DEFAULT: '#D8AE54', foreground: '#0B1521' },   /* Ouro Velho (acento principal) */
+            accent: { DEFAULT: '#B85433', foreground: '#F4F0E8' },  /* Tijolo (acento raro) */
+            card: { DEFAULT: '#122236', foreground: '#F4F0E8' },
+            muted: { DEFAULT: '#16263A', foreground: '#9AA3B2' },
+            secondary: { DEFAULT: '#272B33', foreground: '#F4F0E8' }, /* Carvão (tags/pílulas) */
+            border: '#243345',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Montserrat', 'system-ui', 'sans-serif'],
+          },
+          backgroundImage: {
+            'brand-gradient': 'linear-gradient(135deg, #E6C06A 0%, #D8AE54 100%)',
+            'card-gradient': 'linear-gradient(160deg, #14253B 0%, #0B1521 100%)',
+          },
+          boxShadow: {
+            'brand': '0 10px 26px -14px rgba(216,174,84,.24)',
+            'card-soft': '0 24px 60px -24px rgba(0,0,0,.65)',
+          },
+        },
+      },
+    };
+  </script>
+  <style type="text/tailwindcss">
+    /* Padrões visuais que não são utilitários simples */
+    body { background-color: #0B1521; }
+    .bg-hero {
+      background:
+        radial-gradient(ellipse 80% 50% at 75% 0%, rgba(216,174,84,.05), transparent 62%),
+        #0B1521;
+    }
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    /* Logos das montadoras: tamanho óptico equilibrado + nomes alinhados */
+    .brand-item { display:flex; flex-direction:column; align-items:center; gap:18px; }
+    .brand-logo-box { height:48px; display:flex; align-items:center; justify-content:center; }
+    .brand-logo-img { width:auto; max-width:140px; object-fit:contain; opacity:.82; transition:transform .3s ease, opacity .3s ease; }
+    .brand-item:hover .brand-logo-img { opacity:1; transform:translateY(-3px); }
+    /* alturas individuais para equilíbrio visual (Kia é grosso/largo → menor) */
+    .logo-nissan{max-height:42px} .logo-renault{max-height:47px} .logo-kia{max-height:31px} .logo-citroen{max-height:42px} .logo-peugeot{max-height:47px}
+    .brand-name { font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#9AA3B2; }
+    @media (max-width:640px){
+      .brand-logo-box{ height:40px; }
+      .logo-nissan{max-height:35px} .logo-renault{max-height:39px} .logo-kia{max-height:26px} .logo-citroen{max-height:35px} .logo-peugeot{max-height:39px}
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen bg-background text-foreground font-sans">
+    <!-- ===== HEADER ===== -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/40">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+        <a href="#top" class="font-display font-black text-xl tracking-tight">Juvenill <span class="text-brand">Ribêiro</span><span class="text-brand">.</span></a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+          <a href="#sobre" class="hover:text-foreground transition-colors">Sobre</a>
+          <a href="#produtos" class="hover:text-foreground transition-colors">O que faço</a>
+          <a href="#metodo" class="hover:text-foreground transition-colors">Método</a>
+          <!-- E-book / Cursos: placeholders (trocar href pelo link externo quando disponível) -->
+          <a href="#" title="Em breve" class="hover:text-foreground transition-colors">E-book</a>
+          <a href="#" title="Em breve" class="hover:text-foreground transition-colors">Cursos</a>
+          <a href="#contato" class="hover:text-foreground transition-colors">Contato</a>
+        </nav>
+        <a href="#contato" class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold text-sm px-5 py-2.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Falar comigo
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section id="top" class="relative pt-24 pb-20 lg:pt-32 lg:pb-32 bg-hero overflow-hidden">
+      <div class="absolute inset-0 bg-grid opacity-40"></div>
+      <div class="relative max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <p class="text-foreground text-sm font-semibold tracking-[0.25em] uppercase mb-5">Juvenill <span class="text-brand">Ribêiro</span></p>
+          <h1 class="font-display font-black text-2xl md:text-3xl lg:text-[2.1rem] leading-[1.25] mb-6"><span class="text-brand">Vender</span> gera movimento.<br/><span class="text-brand">Pós-venda</span> cria recorrência.<br/><span class="text-brand">Liderança</span> sustenta crescimento.</h1>
+          <p class="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">Mais de 18 anos no varejo automotivo, conectando vendas, pós-venda e liderança para transformar estratégia em execução e construir resultados sustentáveis por meio das pessoas.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#sobre" class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-7 py-3.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Conheça minha história
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
+            <a href="#produtos" class="inline-flex items-center gap-2 border border-border bg-card/50 text-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-card transition-colors">O que eu faço</a>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 relative">
+          <div class="absolute -inset-6 bg-brand/10 blur-3xl rounded-full"></div>
+          <img src="assets/juvenill-hero.jpg" alt="Juvenill — Líder comercial automotivo" width="1024" height="1024" class="relative rounded-2xl shadow-card-soft ring-1 ring-border w-full max-w-md mx-auto" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CITAÇÃO 1 ===== -->
+    <section class="py-16 lg:py-20 border-y border-border/50 bg-card/30">
+      <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-brand mx-auto mb-6 opacity-70" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path></svg>
+        <p class="font-display text-2xl md:text-3xl lg:text-4xl leading-snug font-bold">"Estratégia sem execução é só conversa.<span class="text-brand"> Resultado nasce do campo</span>, com time, número e senso de urgência."</p>
+        <p class="mt-6 text-sm font-semibold tracking-[0.2em] uppercase text-muted-foreground">— Juvenill</p>
+      </div>
+    </section>
+
+    <!-- ===== SOBRE ===== -->
+    <section id="sobre" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 relative">
+          <div class="absolute -inset-4 bg-brand/10 blur-3xl rounded-full"></div>
+          <img src="assets/juvenill-about.jpg" alt="Juvenill" loading="lazy" width="1280" height="1920" class="relative rounded-2xl shadow-card-soft ring-1 ring-border w-full" />
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">Quem sou eu</p>
+          <h2 class="font-display font-black text-4xl md:text-5xl leading-tight mb-8">De vendedor a diretor.<br/><span class="text-brand">Da experiência</span> à transformação.</h2>
+          <div class="space-y-5 text-lg text-muted-foreground leading-relaxed">
+            <p>São mais de <span class="text-foreground font-semibold">18 anos de trajetória no varejo automotivo</span>, passando por vendas, pós-vendas e liderança de operações de marcas como Nissan, Renault, Kia, Citroën e Peugeot.</p>
+            <p>Comecei como consultor de vendas e cheguei à diretoria, liderando equipes em diferentes cidades e contribuindo para a evolução de operações, processos e pessoas. Essa caminhada me permitiu participar da construção de <span class="text-foreground font-semibold">resultados reconhecidos entre os melhores da América Latina</span>.</p>
+            <p>Hoje, compartilho aprendizados práticos sobre vendas, liderança e desenvolvimento profissional, com um propósito claro:<span class="text-foreground font-semibold"> transformar estratégia em ação e equipes em resultado.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAIXA DE MARCAS ===== -->
+    <section class="py-12 border-y border-border/50 bg-card/30">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <p class="text-center text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-8">Marcas por onde passei</p>
+        <div id="brand-strip" class="flex flex-wrap items-start justify-center gap-x-14 gap-y-12 md:gap-x-20">
+          <div class="brand-item"><div class="brand-logo-box"><img class="brand-logo-img logo-nissan"  src="assets/logos/nissan.png"  alt="Nissan"  /></div><span class="brand-name">Nissan</span></div>
+          <div class="brand-item"><div class="brand-logo-box"><img class="brand-logo-img logo-renault" src="assets/logos/renault.png" alt="Renault" /></div><span class="brand-name">Renault</span></div>
+          <div class="brand-item"><div class="brand-logo-box"><img class="brand-logo-img logo-kia"     src="assets/logos/kia.png"     alt="Kia"     /></div><span class="brand-name">Kia</span></div>
+          <div class="brand-item"><div class="brand-logo-box"><img class="brand-logo-img logo-citroen" src="assets/logos/citroen.png" alt="Citroën" /></div><span class="brand-name">Citroën</span></div>
+          <div class="brand-item"><div class="brand-logo-box"><img class="brand-logo-img logo-peugeot" src="assets/logos/peugeot.png" alt="Peugeot" /></div><span class="brand-name">Peugeot</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RECONHECIMENTOS ===== -->
+    <section class="py-20 lg:py-24">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">Reconhecimentos</p>
+          <h2 class="font-display font-black text-3xl md:text-4xl leading-tight">Conquistas que fazem parte<br/><span class="text-brand">da trajetória.</span></h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <article class="bg-card-gradient border border-border rounded-2xl p-7 text-center shadow-card-soft">
+            <div class="font-display font-black text-xl text-brand mb-2">3× Clube dos Samurai</div>
+            <p class="text-sm text-muted-foreground">Prêmio Nissan América Latina às melhores concessionárias, conquistado pela VIPCAR (FY16-17, FY17-18 e FY18-19).</p>
+          </article>
+          <article class="bg-card-gradient border border-border rounded-2xl p-7 text-center shadow-card-soft">
+            <div class="font-display font-black text-xl text-brand mb-2">Top 10 Nissan</div>
+            <p class="text-sm text-muted-foreground">Entre as melhores operações Nissan do Brasil em gestão e satisfação do cliente.</p>
+          </article>
+          <article class="bg-card-gradient border border-border rounded-2xl p-7 text-center shadow-card-soft">
+            <div class="font-display font-black text-xl text-brand mb-2">2× Time de Ouro</div>
+            <p class="text-sm text-muted-foreground">Bicampeão de Pós-Vendas no Time de Ouro Nissan (FY17-18 e FY18-19) com a VIPCAR.</p>
+          </article>
+          <article class="bg-card-gradient border border-border rounded-2xl p-7 text-center shadow-card-soft">
+            <div class="font-display font-black text-xl text-brand mb-2">Chile &amp; México</div>
+            <p class="text-sm text-muted-foreground">Destinos das conquistas do Time de Ouro: Cancún (2018) e Chile (2019).</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FORMAÇÃO ===== -->
+    <section class="py-16 bg-card-gradient border-y border-border/50">
+      <div class="max-w-5xl mx-auto px-6 lg:px-10">
+        <div class="text-center mb-10">
+          <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-3">Formação</p>
+          <h2 class="font-display font-black text-3xl md:text-4xl leading-tight">Base acadêmica</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="flex items-start gap-4 bg-background/40 border border-border rounded-xl px-6 py-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-brand shrink-0 mt-0.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+            <div><div class="font-semibold text-foreground">Administração</div><div class="text-sm text-muted-foreground">Graduação</div></div>
+          </div>
+          <div class="flex items-start gap-4 bg-background/40 border border-border rounded-xl px-6 py-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-brand shrink-0 mt-0.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+            <div><div class="font-semibold text-foreground">Pós-graduação</div><div class="text-sm text-muted-foreground">Liderança, Gestão e Alta Performance</div></div>
+          </div>
+          <div class="flex items-start gap-4 bg-background/40 border border-border rounded-xl px-6 py-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-brand shrink-0 mt-0.5" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+            <div><div class="font-semibold text-foreground">MBA</div><div class="text-sm text-muted-foreground">Estratégia e Desenvolvimento de Liderança</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRODUTOS ===== -->
+    <section id="produtos" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="max-w-3xl mb-14">
+          <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">O que eu faço</p>
+          <h2 class="font-display font-black text-4xl md:text-5xl lg:text-6xl leading-tight mb-5">Quatro frentes.<br/><span class="text-brand">Um único objetivo:</span> resultado.</h2>
+          <p class="text-lg text-muted-foreground">Trabalho com líderes e concessionárias que não querem apenas treinar a equipe — querem mudar o patamar de execução do negócio.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <article class="group bg-card-gradient border border-border rounded-2xl p-8 shadow-card-soft hover:border-brand/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-brand/15 text-brand flex items-center justify-center mb-6 group-hover:bg-brand/25 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg></div>
+            <h3 class="font-display font-bold text-2xl mb-3">Mentoria para Líderes Comerciais</h3>
+            <p class="text-muted-foreground leading-relaxed mb-5">Acompanhamento individual para gerentes e diretores que querem subir o nível de execução, leitura de indicadores e gestão de time.</p>
+            <div class="flex flex-wrap gap-2"><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">1:1</span><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">12 semanas</span><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">High ticket</span></div>
+          </article>
+          <article class="group bg-card-gradient border border-border rounded-2xl p-8 shadow-card-soft hover:border-brand/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-brand/15 text-brand flex items-center justify-center mb-6 group-hover:bg-brand/25 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg></div>
+            <h3 class="font-display font-bold text-2xl mb-3">Consultoria para Concessionárias</h3>
+            <p class="text-muted-foreground leading-relaxed mb-5">Diagnóstico, redesenho de processos comerciais e de pós-vendas, e implantação de rotina de gestão com foco em meta e margem.</p>
+            <div class="flex flex-wrap gap-2"><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">Vendas</span><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">Pós-vendas</span><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">Operação</span></div>
+          </article>
+          <article class="group bg-card-gradient border border-border rounded-2xl p-8 shadow-card-soft hover:border-brand/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-brand/15 text-brand flex items-center justify-center mb-6 group-hover:bg-brand/25 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg></div>
+            <h3 class="font-display font-bold text-2xl mb-3">Treinamento de Equipes de Alta Performance</h3>
+            <p class="text-muted-foreground leading-relaxed mb-5">Programas in-company para vendedores, consultores de serviço e lideranças. Conteúdo prático, calibrado em campo, sem teoria solta.</p>
+            <div class="flex flex-wrap gap-2"><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">In-company</span><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">Vendas</span><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">Liderança</span></div>
+          </article>
+          <article class="group bg-card-gradient border border-border rounded-2xl p-8 shadow-card-soft hover:border-brand/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-brand/15 text-brand flex items-center justify-center mb-6 group-hover:bg-brand/25 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg></div>
+            <h3 class="font-display font-bold text-2xl mb-3">Programa de Aceleração de Resultado</h3>
+            <p class="text-muted-foreground leading-relaxed mb-5">Sprints de 90 dias com sua liderança para destravar conversão, ticket médio e retenção. Meta clara, rotina afinada, time engajado.</p>
+            <div class="flex flex-wrap gap-2"><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">90 dias</span><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">Squad</span><span class="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary text-secondary-foreground">Resultado</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MÉTODO ===== -->
+    <section id="metodo" class="py-20 lg:py-28 bg-card-gradient border-y border-border/50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">Como eu faço</p>
+          <h2 class="font-display font-black text-4xl md:text-5xl leading-tight">Método direto. <span class="text-brand">Execução em campo.</span></h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-background/50 border border-border rounded-2xl p-7"><div class="font-display font-black text-4xl text-brand mb-4">01</div><h3 class="font-display font-bold text-xl mb-3">Diagnóstico de campo</h3><p class="text-muted-foreground text-sm leading-relaxed">Vamos a fundo nos números, na operação e na cultura do time. Sem achismo.</p></div>
+          <div class="bg-background/50 border border-border rounded-2xl p-7"><div class="font-display font-black text-4xl text-brand mb-4">02</div><h3 class="font-display font-bold text-xl mb-3">Plano de execução</h3><p class="text-muted-foreground text-sm leading-relaxed">Rotina de gestão, metas desdobradas e responsáveis claros. Cada um sabe o que entregar.</p></div>
+          <div class="bg-background/50 border border-border rounded-2xl p-7"><div class="font-display font-black text-4xl text-brand mb-4">03</div><h3 class="font-display font-bold text-xl mb-3">Acompanhamento no jogo</h3><p class="text-muted-foreground text-sm leading-relaxed">Sprints curtas, reuniões objetivas e ajuste constante. Liderança presente no campo.</p></div>
+          <div class="bg-background/50 border border-border rounded-2xl p-7"><div class="font-display font-black text-4xl text-brand mb-4">04</div><h3 class="font-display font-bold text-xl mb-3">Time de alta performance</h3><p class="text-muted-foreground text-sm leading-relaxed">Formação de pessoas, sucessão e cultura de meta. Resultado que se sustenta.</p></div>
+        </div>
+        <div class="mt-16 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 bg-background/40 border border-border rounded-xl px-5 py-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-medium text-sm">Senso de urgência</span></div>
+          <div class="flex items-center gap-3 bg-background/40 border border-border rounded-xl px-5 py-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-medium text-sm">Capacidade de execução</span></div>
+          <div class="flex items-center gap-3 bg-background/40 border border-border rounded-xl px-5 py-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-medium text-sm">Time engajado e responsável</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ALÉM DO CARGO ===== -->
+    <section id="alem" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div class="relative order-2 lg:order-1">
+            <div class="absolute -inset-4 bg-brand/10 blur-3xl rounded-full"></div>
+            <img src="assets/juvenill-alem.jpg" alt="Juvenill — momento descontraído" loading="lazy" class="relative rounded-2xl shadow-card-soft ring-1 ring-border w-full max-w-md mx-auto lg:mx-0" onerror="this.parentElement.style.display='none'" />
+          </div>
+          <div class="order-1 lg:order-2">
+            <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">Além do cargo</p>
+            <h2 class="font-display font-black text-4xl md:text-5xl leading-tight mb-6">Antes da função,<br/><span class="text-brand">as pessoas.</span></h2>
+            <p class="text-lg text-muted-foreground leading-relaxed">Antes de qualquer função profissional, sou alguém movido por pessoas, aprendizado e evolução constante. Acredito que resultados sustentáveis começam pela forma como escolhemos viver, trabalhar e construir relações.</p>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <article class="bg-card-gradient border border-border rounded-2xl p-7 shadow-card-soft hover:border-brand/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-brand/15 text-brand flex items-center justify-center mb-5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></div>
+            <h3 class="font-display font-bold text-xl mb-2">Família</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">Minha esposa, minha filha e nossos cachorros são minha base. É ao lado deles que encontro equilíbrio, direção e sentido para continuar evoluindo.</p>
+          </article>
+          <article class="bg-card-gradient border border-border rounded-2xl p-7 shadow-card-soft hover:border-brand/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-brand/15 text-brand flex items-center justify-center mb-5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg></div>
+            <h3 class="font-display font-bold text-xl mb-2">Movimento</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">A corrida, a natação e os desafios esportivos me ensinam que a constância transforma mais do que a intensidade de um único momento.</p>
+          </article>
+          <article class="bg-card-gradient border border-border rounded-2xl p-7 shadow-card-soft hover:border-brand/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-brand/15 text-brand flex items-center justify-center mb-5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"></path></svg></div>
+            <h3 class="font-display font-bold text-xl mb-2">Espiritualidade</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">A espiritualidade me ajuda a cultivar gratidão, manter os pés no chão e compreender que cada pessoa carrega sua própria história.</p>
+          </article>
+          <article class="bg-card-gradient border border-border rounded-2xl p-7 shadow-card-soft hover:border-brand/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-brand/15 text-brand flex items-center justify-center mb-5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+            <h3 class="font-display font-bold text-xl mb-2">Princípios</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">Honrar a palavra, respeitar o tempo das pessoas, agir com coerência, valorizar as diferenças e tratar todos com dignidade.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CITAÇÃO 2 ===== -->
+    <section class="py-20 lg:py-28">
+      <div class="max-w-4xl mx-auto px-6 lg:px-10">
+        <div class="bg-card-gradient border border-border rounded-3xl p-10 lg:p-14 text-center shadow-card-soft">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-accent mx-auto mb-6" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+          <p class="font-display text-2xl md:text-3xl leading-snug font-bold mb-6">"Não basta saber vender. É preciso saber <span class="text-brand">liderar quem vende</span> — e sustentar isso na rotina, no número e na cultura."</p>
+          <p class="text-sm font-semibold tracking-[0.2em] uppercase text-muted-foreground">Juvenill — Líder Comercial</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section id="contato" class="py-20 lg:py-28 bg-hero border-t border-border/50 relative overflow-hidden">
+      <div class="absolute inset-0 bg-grid opacity-30"></div>
+      <div class="relative max-w-4xl mx-auto px-6 lg:px-10 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-accent mx-auto mb-6" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        <h2 class="font-display font-black text-4xl md:text-5xl lg:text-6xl leading-tight mb-5">Pronto para subir<br/><span class="text-brand">de nível?</span></h2>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">Seja para acelerar a sua <span class="text-foreground font-semibold">carreira</span> (mentoria) ou destravar os resultados da sua <span class="text-foreground font-semibold">empresa</span> (consultoria), o melhor primeiro passo é um diagnóstico — rápido, gratuito e com um plano inicial na hora.</p>
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+          <!-- Diagnóstico: trocar href pela URL quando o diagnóstico estiver publicado -->
+          <a href="#" title="Em breve" class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-7 py-3.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="m9 14 2 2 4-4"></path></svg> Fazer diagnóstico gratuito</a>
+          <a href="mailto:contato@juvenill.com.br" class="inline-flex items-center gap-2 border border-border bg-card/50 text-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-card transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg> Falar por e-mail</a>
+          <a href="#" class="inline-flex items-center gap-2 border border-border bg-card/50 text-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-card transition-colors">Agendar uma conversa <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        </div>
+        <div class="flex justify-center gap-4">
+          <a href="https://www.linkedin.com/in/juvenilsrj/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-11 h-11 rounded-full border border-border bg-card/50 flex items-center justify-center hover:border-brand hover:text-brand transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+          <a href="https://www.instagram.com/juvenilsrj/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-11 h-11 rounded-full border border-border bg-card/50 flex items-center justify-center hover:border-brand hover:text-brand transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-border py-10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <div class="font-display font-black text-foreground">Juvenill <span class="text-brand">Ribêiro</span><span class="text-brand">.</span></div>
+        <p>© 2026 Juvenill. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Fallback: se o arquivo do logo ainda não existir, mostra o nome da marca em texto.
+    document.querySelectorAll('.brand-logo').forEach(function (img) {
+      img.addEventListener('error', function () {
+        var span = document.createElement('span');
+        span.className = 'font-display font-bold text-xl md:text-2xl text-foreground/60';
+        span.textContent = img.dataset.name;
+        img.replaceWith(span);
+      });
+    });
+  </script>
+</body>
+</html>

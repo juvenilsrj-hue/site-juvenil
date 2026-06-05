@@ -1,0 +1,27 @@
+COMO INSERIR OS LOGOTIPOS DAS MONTADORAS
+========================================
+
+O site já está preparado para exibir os logos. Basta colocar os arquivos
+oficiais nesta pasta (assets/logos/) com EXATAMENTE estes nomes:
+
+    nissan.svg
+    renault.svg
+    kia.svg
+    citroen.svg
+    peugeot.svg
+
+- Formato ideal: SVG (vetor, qualidade perfeita em qualquer tamanho).
+- Se você só tiver PNG, pode usar .png — mas troque a extensão no index.html
+  (procure por "assets/logos/nissan.svg" e ajuste para .png, e assim por diante).
+- Pode usar a versão colorida OU branca: o site aplica automaticamente um
+  filtro que deixa todos os logos brancos e uniformes sobre o fundo azul.
+- Tamanho/altura é ajustado pelo CSS (.brand-logo) — não precisa redimensionar.
+
+Enquanto os arquivos não estiverem aqui, o site mostra o NOME da marca em texto
+(fallback automático), então a página nunca fica "quebrada".
+
+ONDE CONSEGUIR OS ARQUIVOS OFICIAIS
+-----------------------------------
+- Manual de marca / brand center de cada montadora, OU
+- Os arquivos que você já tenha do material interno das concessionárias.
+  (Evite baixar de sites aleatórios para não pegar versão de baixa qualidade.)
