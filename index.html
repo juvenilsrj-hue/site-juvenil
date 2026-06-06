@@ -94,9 +94,28 @@
           <a href="#" title="Em breve" class="hover:text-foreground transition-colors">Cursos</a>
           <a href="#contato" class="hover:text-foreground transition-colors">Contato</a>
         </nav>
-        <a href="#contato" class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold text-sm px-5 py-2.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Falar comigo
+        <a href="#contato" class="hidden md:inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold text-sm px-5 py-2.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Falar comigo
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
         </a>
+        <!-- Botão hambúrguer (somente mobile) -->
+        <button id="menu-toggle" type="button" class="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-foreground" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </div>
+      <!-- Menu mobile (dropdown) -->
+      <div id="mobile-menu" class="md:hidden hidden border-t border-border/40 bg-background/95 backdrop-blur-md">
+        <nav class="flex flex-col px-6 py-3 text-sm font-medium">
+          <a href="#sobre" class="py-3 text-muted-foreground hover:text-foreground border-b border-border/30 transition-colors">Sobre</a>
+          <a href="#produtos" class="py-3 text-muted-foreground hover:text-foreground border-b border-border/30 transition-colors">O que faço</a>
+          <a href="#metodo" class="py-3 text-muted-foreground hover:text-foreground border-b border-border/30 transition-colors">Método</a>
+          <a href="#" title="Em breve" class="py-3 text-muted-foreground hover:text-foreground border-b border-border/30 transition-colors">E-book</a>
+          <a href="#" title="Em breve" class="py-3 text-muted-foreground hover:text-foreground border-b border-border/30 transition-colors">Cursos</a>
+          <a href="#contato" class="py-3 text-muted-foreground hover:text-foreground transition-colors">Contato</a>
+          <a href="#contato" class="mt-4 mb-2 inline-flex justify-center items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-5 py-3 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Falar comigo
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </nav>
       </div>
     </header>
 
@@ -394,6 +413,29 @@
         img.replaceWith(span);
       });
     });
+
+    // Menu hambúrguer (mobile): abre/fecha
+    (function () {
+      var btn = document.getElementById('menu-toggle');
+      var menu = document.getElementById('mobile-menu');
+      var iconOpen = document.getElementById('icon-open');
+      var iconClose = document.getElementById('icon-close');
+      if (!btn || !menu) return;
+      function setOpen(open) {
+        menu.classList.toggle('hidden', !open);
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+      }
+      btn.addEventListener('click', function () {
+        setOpen(menu.classList.contains('hidden'));
+      });
+      // Fecha ao tocar em qualquer link do menu
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+      });
+    })();
   </script>
 </body>
 </html>
