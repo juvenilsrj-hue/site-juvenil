@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Juvenill Ribêiro">
+  <circle cx="60" cy="60" r="44" fill="none" stroke="#D8AE54" stroke-width="2"/>
+  <text x="60" y="62" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="38" fill="#D8AE54">JR</text>
+  <g fill="#D8AE54">
+    <circle cx="60" cy="16" r="4"/>
+    <circle cx="98.1" cy="38" r="4"/>
+    <circle cx="98.1" cy="82" r="4"/>
+    <circle cx="60" cy="104" r="4"/>
+    <circle cx="21.9" cy="82" r="4"/>
+    <circle cx="21.9" cy="38" r="4"/>
+  </g>
+</svg>

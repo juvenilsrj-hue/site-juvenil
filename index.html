@@ -86,19 +86,20 @@
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/40">
       <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
         <a href="#top" class="font-display font-black text-xl tracking-tight">Juvenill <span class="text-brand">Ribêiro</span><span class="text-brand">.</span></a>
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-          <a href="#sobre" class="hover:text-foreground transition-colors">Sobre</a>
-          <a href="#produtos" class="hover:text-foreground transition-colors">O que faço</a>
-          <a href="#metodo" class="hover:text-foreground transition-colors">Método</a>
-          <!-- E-books / Cursos: rolam até a seção "Programas Complementares" (#complementares) -->
-          <a href="#complementares" class="hover:text-foreground transition-colors">E-books</a>
-          <a href="#complementares" class="hover:text-foreground transition-colors">Cursos</a>
-          <a href="#blog" class="hover:text-foreground transition-colors">Blog</a>
-          <a href="#contato" class="hover:text-foreground transition-colors">Contato</a>
-        </nav>
-        <a href="#contato" class="hidden md:inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold text-sm px-5 py-2.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Falar comigo
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-        </a>
+        <div class="hidden md:flex items-center gap-8 lg:gap-10">
+          <nav class="flex items-center gap-8 text-sm font-medium text-muted-foreground">
+            <a href="#sobre" class="hover:text-foreground transition-colors">Sobre</a>
+            <a href="#produtos" class="hover:text-foreground transition-colors">O que faço</a>
+            <a href="#metodo" class="hover:text-foreground transition-colors">Método</a>
+            <!-- E-books / Cursos: rolam até a seção "Programas Complementares" (#complementares) -->
+            <a href="#complementares" class="hover:text-foreground transition-colors">E-books</a>
+            <a href="#complementares" class="hover:text-foreground transition-colors">Cursos</a>
+            <a href="#blog" class="hover:text-foreground transition-colors">Blog</a>
+          </nav>
+          <a href="#contato" class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold text-sm px-5 py-2.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Falar comigo
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
         <!-- Botão hambúrguer (somente mobile) -->
         <button id="menu-toggle" type="button" class="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-foreground" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
           <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
@@ -114,7 +115,6 @@
           <a href="#complementares" class="py-3 text-muted-foreground hover:text-foreground border-b border-border/30 transition-colors">E-books</a>
           <a href="#complementares" class="py-3 text-muted-foreground hover:text-foreground border-b border-border/30 transition-colors">Cursos</a>
           <a href="#blog" class="py-3 text-muted-foreground hover:text-foreground border-b border-border/30 transition-colors">Blog</a>
-          <a href="#contato" class="py-3 text-muted-foreground hover:text-foreground transition-colors">Contato</a>
           <a href="#contato" class="mt-4 mb-2 inline-flex justify-center items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-5 py-3 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Falar comigo
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
           </a>
@@ -448,8 +448,15 @@
         <div class="flex flex-wrap justify-center gap-4 mb-10">
           <!-- Diagnóstico: em teste local abre o app local; em produção usa /diagnostico/#diagnostico -->
           <a href="/diagnostico/#diagnostico" data-diagnostic-link class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-7 py-3.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="m9 14 2 2 4-4"></path></svg> Fazer diagnóstico gratuito</a>
-          <a href="mailto:contato@juvenill.com.br" class="inline-flex items-center gap-2 border border-border bg-card/50 text-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-card transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg> Falar por e-mail</a>
-          <a href="#" class="inline-flex items-center gap-2 border border-border bg-card/50 text-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-card transition-colors">Agendar uma conversa <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+          <div class="relative" data-talk>
+            <button type="button" data-talk-toggle aria-haspopup="true" aria-expanded="false" class="inline-flex items-center gap-2 border border-border bg-card/50 text-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-card transition-colors">Fale comigo
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <div data-talk-menu class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-60 bg-card border border-border rounded-xl shadow-card-soft overflow-hidden z-30 text-left">
+              <a href="mailto:contato@juvenill.com.br" class="flex items-center gap-3 px-5 py-3.5 text-sm text-foreground hover:bg-background/60 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg> E-mail</a>
+              <a href="https://wa.me/5549999647004" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3.5 text-sm text-foreground hover:bg-background/60 transition-colors border-t border-border/50"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-brand" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 9.93c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"></path></svg> WhatsApp</a>
+            </div>
+          </div>
         </div>
         <div class="flex justify-center gap-4">
           <a href="https://www.linkedin.com/in/juvenilsrj/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-11 h-11 rounded-full border border-border bg-card/50 flex items-center justify-center hover:border-brand hover:text-brand transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
@@ -508,6 +515,22 @@
       // Fecha ao tocar em qualquer link do menu
       menu.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () { setOpen(false); });
+      });
+    })();
+
+    // "Fale comigo": abre/fecha as opções (E-mail / WhatsApp)
+    (function () {
+      var wrap = document.querySelector('[data-talk]');
+      if (!wrap) return;
+      var btn = wrap.querySelector('[data-talk-toggle]');
+      var menu = wrap.querySelector('[data-talk-menu]');
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = menu.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (e) {
+        if (!wrap.contains(e.target)) { menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false'); }
       });
     })();
   </script>
