@@ -1,0 +1,47 @@
+COMO CRIAR UM NOVO POST DO BLOG
+================================
+
+O blog usa páginas HTML simples (uma por artigo). Para lançar um post novo:
+
+1) DUPLIQUE o arquivo "_TEMPLATE.html" (copiar e colar nesta mesma pasta "blog").
+
+2) RENOMEIE a cópia com um "slug" (sem espaços, sem acentos, com hífens).
+   Ex.: como-bater-meta-todo-mes.html
+
+3) ABRA o arquivo num editor e edite:
+   - <title> ............... título que aparece na aba do navegador
+   - description / og:title / og:description ... título e resumo (aparecem no LinkedIn)
+   - og:url ................ a URL pública final do post (depois de publicar)
+   - og:image ............. imagem de capa para a prévia (LinkedIn/redes)
+   - categoria · data ..... a linha pequena dourada acima do título
+   - <h1> ................. o título do post
+   - dentro de <div class="post-body"> ... escreva o conteúdo
+       use <p> para parágrafos, <h2>/<h3> para subtítulos,
+       <ul><li> para listas, <blockquote> para destaques.
+
+4) ADICIONE UM CARD NA HOME (index.html):
+   - Abra index.html, procure por: <!-- ===== BLOG ===== -->
+   - Copie um dos blocos <a href="blog/....html" ...>...</a> e cole,
+     trocando o href, a categoria, o título e o resumo do novo post.
+
+5) PRONTO. Abra o site e teste.
+
+IMAGEM DE CAPA (deixa o post mais atraente)
+-------------------------------------------
+- Cada post tem uma imagem de capa logo abaixo do título:
+    <img src="../assets/blog/cover-exemplo.jpg" ... />
+  Troque o "src" pela sua imagem. Coloque o arquivo em:  assets/blog/
+  Tamanho recomendado: 1200x630 px.
+- O card do post na home (index.html) tambem mostra essa imagem como miniatura.
+  Atualize o <img ... src="assets/blog/SUA-IMAGEM.jpg"> dentro do card correspondente.
+- Sem imagem ainda? Tudo bem: se o arquivo nao existir, a capa some sozinha
+  (nao quebra o layout).
+
+COMPARTILHAR NO LINKEDIN
+------------------------
+- Cada post já tem um botão "Compartilhar no LinkedIn" que monta o link sozinho.
+- IMPORTANTE: a prévia bonita (título + imagem) no LinkedIn só funciona quando o
+  site estiver PUBLICADO (com URL pública). No localhost o LinkedIn não consegue ler.
+- Depois de publicar, atualize o campo "og:url" de cada post com a URL real.
+
+DICA: mantenha o _TEMPLATE.html sempre intacto (é o seu molde). Duplique-o sempre.
