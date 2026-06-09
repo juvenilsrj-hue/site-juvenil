@@ -19,10 +19,16 @@ O blog usa páginas HTML simples (uma por artigo). Para lançar um post novo:
        use <p> para parágrafos, <h2>/<h3> para subtítulos,
        <ul><li> para listas, <blockquote> para destaques.
 
-4) ADICIONE UM CARD NA HOME (index.html):
-   - Abra index.html, procure por: <!-- ===== BLOG ===== -->
-   - Copie um dos blocos <a href="blog/....html" ...>...</a> e cole,
-     trocando o href, a categoria, o título e o resumo do novo post.
+4) ADICIONE O CARD NAS DUAS LISTAS:
+   a) NA HOME (index.html) — mostra os artigos em destaque:
+      - Procure por: <!-- ===== BLOG ===== -->
+      - Copie um dos blocos <a href="blog/....html" ...>...</a> e cole,
+        trocando o href, a categoria, o título e o resumo do novo post.
+      - Dica: deixe na home só os mais recentes (ex: 3). Os demais ficam na lista completa.
+   b) NA LISTA COMPLETA (blog/index.html) — "Todos os artigos":
+      - Procure por: <!-- LISTA DE ARTIGOS ... -->
+      - Copie um bloco <a href="SEU-POST.html" ...>...</a> e cole (aqui o href NÃO leva "blog/",
+        pois o arquivo já está na pasta blog).
 
 5) PRONTO. Abra o site e teste.
 
@@ -58,5 +64,15 @@ LINKAR PALAVRAS NO TEXTO
 - Para transformar uma palavra/expressão num link para outro post, basta envolvê-la:
     ...isso conecta com a <a href="pos-venda-onde-a-recompra-comeca.html">pós-venda</a>...
   Os links no corpo já saem na cor dourada automaticamente.
+
+PALAVRAS-CHAVE (TAGS + SEO)
+---------------------------
+- TAGS VISÍVEIS: no fim do post há uma faixa "<!-- TAGS -->" com vários <span>...</span>.
+  Edite/duplique os <span> com as palavras-chave do post (ex: Vendas, Liderança).
+- META KEYWORDS (SEO, no topo do arquivo): edite a linha
+    <meta name="keywords" content="palavra-chave 1, palavra-chave 2, ..." />
+  Use as mesmas palavras das tags, separadas por vírgula.
+  (Obs: o Google hoje dá pouco peso a esse campo; o que mais conta são o conteúdo,
+   o título e a descrição. Mas não custa preencher.)
 
 DICA: mantenha o _TEMPLATE.html sempre intacto (é o seu molde). Duplique-o sempre.
