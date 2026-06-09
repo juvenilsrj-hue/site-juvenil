@@ -44,4 +44,19 @@ COMPARTILHAR NO LINKEDIN
   site estiver PUBLICADO (com URL pública). No localhost o LinkedIn não consegue ler.
 - Depois de publicar, atualize o campo "og:url" de cada post com a URL real.
 
+SUGESTÕES DE LEITURA ("Leia também")
+------------------------------------
+- No final de cada post há uma seção "Leia também" com 2 miniaturas de outros posts.
+- Edite os 2 blocos <a href="OUTRO-POST.html"> ... </a>:
+    * href = arquivo do post sugerido
+    * categoria e título do post sugerido
+    * (opcional) troque a imagem da miniatura pelo "src" da capa daquele post
+- Sugestão: aponte para posts do mesmo tema, para o leitor continuar na sua página.
+
+LINKAR PALAVRAS NO TEXTO
+------------------------
+- Para transformar uma palavra/expressão num link para outro post, basta envolvê-la:
+    ...isso conecta com a <a href="pos-venda-onde-a-recompra-comeca.html">pós-venda</a>...
+  Os links no corpo já saem na cor dourada automaticamente.
+
 DICA: mantenha o _TEMPLATE.html sempre intacto (é o seu molde). Duplique-o sempre.
