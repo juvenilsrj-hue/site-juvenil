@@ -1,0 +1,5 @@
+# Site estático (HTML puro) — NÃO precisa de build nem de instalar dependências.
+# Esta configuração força o Netlify a apenas publicar os arquivos da raiz.
+[build]
+  command = "echo 'Site estatico - nada a buildar'"
+  publish = "."
