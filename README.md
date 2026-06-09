@@ -1,7 +1,6 @@
 # Juvenill — Site (versão editável)
 
-Site de **Juvenill Ribêiro** (Líder Comercial Automotivo), recriado a partir do projeto
-original do Lovable como um projeto **estático e editável**, sem necessidade de Node/build.
+Site de **Juvenill Ribêiro** (Líder Comercial Automotivo), como um projeto **estático e editável**, sem necessidade de Node/build.
 
 ## Como abrir
 Basta dar **duplo clique** em `index.html` — abre direto no navegador. Não precisa servidor.
