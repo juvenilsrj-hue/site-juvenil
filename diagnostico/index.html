@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diagnóstico de Liderança e Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">JR</div>
+          <div>
+            <strong>Juvenill <em>Ribêiro.</em></strong>
+            <span>Diagnostico profissional e maturidade empresarial</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Navegação principal">
+          <button class="nav-item active" data-screen="start" type="button">Início</button>
+          <button class="nav-item" data-screen="diagnostics" type="button">Diagnósticos</button>
+          <button class="nav-item admin-link admin-only" data-screen="admin" type="button" hidden>Administrativo</button>
+          <button class="nav-item theme-toggle" id="theme-toggle" type="button">Modo claro</button>
+        </nav>
+
+        <div class="sidebar-note">
+          <strong>Ativo digital</strong>
+          <span>Captação, qualificação e próximos passos para consultoria.</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="screen active" id="screen-start">
+          <div class="intro-grid">
+            <div class="intro-copy">
+              <p class="eyebrow">Assessment consultivo</p>
+              <h1>Pronto para subir <span>de nível?</span></h1>
+              <p>
+                Seja para acelerar a sua <strong>carreira</strong> ou destravar os resultados da sua
+                <strong>empresa</strong>, o melhor primeiro passo é um diagnóstico rápido, gratuito
+                e com plano inicial na hora.
+              </p>
+              <div class="intro-actions">
+                <button class="primary-action" data-screen="diagnostics" type="button">Fazer diagnóstico gratuito</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-diagnostics">
+          <header class="section-header">
+            <div>
+              <p class="eyebrow">Aplicação do diagnóstico</p>
+              <h2>Escolha o diagnóstico e preencha os dados</h2>
+            </div>
+          </header>
+
+          <div class="diagnostic-layout">
+            <form class="lead-form" id="lead-form">
+              <label>Nome<input name="name" autocomplete="name" required /></label>
+              <label>E-mail<input name="email" type="email" autocomplete="email" required /></label>
+              <label>WhatsApp<input name="phone" autocomplete="tel" required /></label>
+              <label>Empresa<input name="company" autocomplete="organization" /></label>
+              <label>Cargo<input name="role" autocomplete="organization-title" /></label>
+              <label>Principal desafio atual<textarea name="challenge" rows="3" placeholder="Ex.: formar líderes, aumentar conversão, melhorar rotina comercial"></textarea></label>
+
+              <fieldset>
+                <legend>Tipo de diagnóstico</legend>
+                <label class="radio-card">
+                  <input name="diagnostic" type="radio" value="leadership" checked />
+                  <span>
+                    <strong>Liderança e Perfil Profissional</strong>
+                    <small>Para líderes, gestores e profissionais em crescimento.</small>
+                  </span>
+                </label>
+                <label class="radio-card">
+                  <input name="diagnostic" type="radio" value="business" />
+                  <span>
+                    <strong>Maturidade Empresarial</strong>
+                    <small>Para empresários, diretores e gestores comerciais.</small>
+                  </span>
+                </label>
+              </fieldset>
+            </form>
+
+            <div class="assessment-panel">
+              <div class="progress-row">
+                <span id="progress-label">0 de 0 respondidas</span>
+                <div class="progress-track"><div id="progress-bar"></div></div>
+              </div>
+              <div id="question-list" class="question-list"></div>
+              <div class="assessment-actions">
+                <button class="secondary-action" id="clear-draft" type="button">Limpar</button>
+                <button class="primary-action" id="finish-assessment" type="button">Gerar resultado</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-result">
+          <div id="result-view"></div>
+        </section>
+
+        <section class="screen" id="screen-admin-login">
+          <div class="admin-login-shell">
+            <form class="admin-login-card" id="admin-login-form">
+              <p class="eyebrow">Área restrita</p>
+              <h2>Acesso administrativo</h2>
+              <p>Entre para visualizar leads, resultados e exportações do diagnóstico.</p>
+
+              <label>E-mail<input name="adminEmail" type="email" autocomplete="username" required /></label>
+              <label>Senha<input name="adminPassword" type="password" autocomplete="current-password" required /></label>
+              <p class="login-error" id="admin-login-error" role="alert"></p>
+
+              <button class="primary-action" type="submit">Entrar</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-admin">
+          <header class="section-header">
+            <div>
+              <p class="eyebrow">Área administrativa</p>
+              <h2>Leads e resultados</h2>
+            </div>
+            <div class="admin-actions">
+              <input id="admin-search" placeholder="Filtrar por nome, empresa ou diagnóstico" />
+              <button class="secondary-action" id="export-csv" type="button">Exportar Excel</button>
+              <button class="secondary-action" id="admin-logout" type="button">Sair</button>
+            </div>
+          </header>
+          <div class="admin-dashboard" id="admin-dashboard"></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Nome</th>
+                  <th>Empresa</th>
+                  <th>Diagnóstico</th>
+                  <th>Resultado</th>
+                  <th>Score</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody id="lead-table"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
