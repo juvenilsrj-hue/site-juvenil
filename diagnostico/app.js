@@ -1359,6 +1359,17 @@ applyRouteFromHash();
 const adminForgot = document.getElementById("admin-forgot");
 if (adminForgot) adminForgot.addEventListener("click", handleForgotPassword);
 
+// Olhinho: revela a senha enquanto o botão está pressionado
+const adminPassToggle = document.getElementById("admin-pass-toggle");
+const adminPassInput = adminLoginForm ? adminLoginForm.querySelector('input[name="adminPassword"]') : null;
+if (adminPassToggle && adminPassInput) {
+  const showPass = () => { adminPassInput.type = "text"; };
+  const hidePass = () => { adminPassInput.type = "password"; };
+  adminPassToggle.addEventListener("mousedown", showPass);
+  adminPassToggle.addEventListener("touchstart", (e) => { e.preventDefault(); showPass(); }, { passive: false });
+  ["mouseup", "mouseleave", "touchend", "touchcancel"].forEach((ev) => adminPassToggle.addEventListener(ev, hidePass));
+}
+
 // Restaura a sessão do admin (caso já esteja logado pelo Supabase)
 if (supabaseClient) {
   supabaseClient.auth.getSession().then(async ({ data }) => {

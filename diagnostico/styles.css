@@ -426,13 +426,15 @@ body.light-theme th {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+  margin-top: 2px;
 }
 
 .remember-check {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--muted-dark);
   cursor: pointer;
 }
@@ -448,7 +450,8 @@ body.light-theme th {
   background: none;
   border: none;
   color: var(--gold);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   cursor: pointer;
   padding: 0;
   text-decoration: underline;
@@ -456,6 +459,34 @@ body.light-theme th {
 
 .link-button:hover {
   color: var(--primary-dark);
+}
+
+.password-field {
+  position: relative;
+  display: block;
+}
+
+.password-field input {
+  padding-right: 44px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--muted-dark);
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  color: var(--gold);
 }
 
 .secondary-action {
