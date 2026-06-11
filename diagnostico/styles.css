@@ -1,18 +1,18 @@
 :root {
   --ink: #182027;
-  --muted: #8f9bad;
-  --line: #34363b;
-  --paper: #08090b;
+  --muted: #9aa3b2;
+  --line: #243345;
+  --paper: #0b1521;
   --panel: #ffffff;
   --primary: #d8ae54;
   --primary-dark: #b98d36;
   --accent: #b85433;
   --gold: #d8ae54;
   --foreground: #f4f0e8;
-  --card-dark: #111418;
-  --card-soft: #171a1f;
-  --card-deep: #0a0d11;
-  --muted-dark: #a9adb4;
+  --card-dark: #122236;
+  --card-soft: #16263a;
+  --card-deep: #0a1320;
+  --muted-dark: #9aa3b2;
   --blue: #d8ae54;
   --radius: 8px;
   --shadow: 0 18px 44px rgba(25, 32, 39, 0.1);
@@ -158,7 +158,7 @@ body.light-theme th {
 
 .sidebar {
   min-height: 84px;
-  background: rgba(8, 12, 16, 0.96);
+  background: rgba(11, 21, 33, 0.96);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: #fff;
   padding: 0 clamp(20px, 4vw, 78px);
@@ -335,7 +335,7 @@ body.light-theme th {
   width: min(100%, 460px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: linear-gradient(180deg, #15181d, #101318);
+  background: linear-gradient(180deg, #122236, #0d1c2e);
   color: var(--foreground);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
   padding: clamp(24px, 4vw, 34px);
@@ -430,7 +430,7 @@ body.light-theme th {
 #screen-result .secondary-action,
 #screen-admin .secondary-action,
 td .secondary-action {
-  background: rgba(18, 23, 29, 0.92);
+  background: rgba(18, 34, 54, 0.92);
   color: var(--foreground);
   border-color: var(--line);
 }
@@ -864,7 +864,7 @@ legend {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: conic-gradient(var(--primary) var(--score), #2b3138 0);
+  background: conic-gradient(var(--primary) var(--score), #1d3047 0);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
@@ -872,7 +872,7 @@ legend {
   width: 150px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #11161c;
+  background: #122236;
   color: var(--gold);
   display: grid;
   place-items: center;
@@ -909,7 +909,7 @@ legend {
 .bar {
   height: 10px;
   border-radius: 999px;
-  background: #2a3038;
+  background: #243345;
   overflow: hidden;
 }
 
