@@ -439,6 +439,10 @@ body.light-theme th {
   cursor: pointer;
 }
 
+.admin-login-row .remember-check {
+  margin-top: 0;
+}
+
 .remember-check input {
   accent-color: var(--gold);
   width: 16px;
