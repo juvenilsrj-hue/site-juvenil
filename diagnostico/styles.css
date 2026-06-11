@@ -443,7 +443,12 @@ body.light-theme th {
   accent-color: var(--gold);
   width: 16px;
   height: 16px;
+  min-height: 0;
+  border: none;
+  background: none;
+  padding: 0;
   margin: 0;
+  flex: 0 0 auto;
 }
 
 .link-button {
