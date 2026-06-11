@@ -7,9 +7,26 @@ const ADMIN_PASSWORD_HASH = "ece061a5bfe20a935705ec1d4dc8e38d204533708a4c54caef2
 // === Supabase: armazenamento dos leads na nuvem ===
 const SUPABASE_URL = "https://mkhzsynndqnljczkggia.supabase.co";
 const SUPABASE_KEY = "sb_publishable_d_Vjkmbj3g6JHO64W3iVOQ_vUq_Xqn0";
+// "Manter conectado": se marcado, sessão fica no localStorage (persiste ao fechar o navegador);
+// se desmarcado, fica no sessionStorage (some ao fechar a aba/navegador).
+const REMEMBER_KEY = "jr_admin_remember";
+const authStorage = {
+  getItem: function (k) {
+    return (localStorage.getItem(REMEMBER_KEY) === "1" ? localStorage : sessionStorage).getItem(k);
+  },
+  setItem: function (k, v) {
+    (localStorage.getItem(REMEMBER_KEY) === "1" ? localStorage : sessionStorage).setItem(k, v);
+  },
+  removeItem: function (k) {
+    localStorage.removeItem(k);
+    sessionStorage.removeItem(k);
+  }
+};
 const supabaseClient =
   window.supabase && SUPABASE_URL
-    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+        auth: { storage: authStorage, persistSession: true, autoRefreshToken: true }
+      })
     : null;
 let adminAuthed = false;
 let remoteLeads = [];
@@ -466,6 +483,10 @@ async function handleAdminLogin(event) {
     return;
   }
 
+  const remember = !!data.get("adminRemember");
+  localStorage.setItem(REMEMBER_KEY, remember ? "1" : "0");
+
+  adminLoginError.style.color = "";
   adminLoginError.textContent = "Entrando...";
   const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
   if (error) {
@@ -492,6 +513,25 @@ async function logoutAdmin() {
   leadTable.innerHTML = "";
   setScreen("start");
   updateRouteForScreen("start");
+}
+
+async function handleForgotPassword() {
+  if (!supabaseClient) return;
+  const email = String(new FormData(adminLoginForm).get("adminEmail") || "").trim().toLowerCase();
+  if (!email) {
+    adminLoginError.style.color = "";
+    adminLoginError.textContent = "Digite seu e-mail no campo acima para receber o link.";
+    return;
+  }
+  const redirectTo = location.href.split("#")[0] + "#admin";
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: redirectTo });
+  if (error) {
+    adminLoginError.style.color = "";
+    adminLoginError.textContent = "Não foi possível enviar agora. Tente novamente em instantes.";
+    return;
+  }
+  adminLoginError.style.color = "var(--gold)";
+  adminLoginError.textContent = "Pronto! Enviamos um link de redefinição para o seu e-mail.";
 }
 
 function currentDiagnosticKey() {
@@ -1315,6 +1355,10 @@ restoreDraft();
 renderQuestions();
 applyRouteFromHash();
 
+// Liga o link "Esqueceu a senha?"
+const adminForgot = document.getElementById("admin-forgot");
+if (adminForgot) adminForgot.addEventListener("click", handleForgotPassword);
+
 // Restaura a sessão do admin (caso já esteja logado pelo Supabase)
 if (supabaseClient) {
   supabaseClient.auth.getSession().then(async ({ data }) => {
@@ -1323,6 +1367,28 @@ if (supabaseClient) {
       await loadRemoteLeads();
       syncAdminAccess();
       if (location.hash.toLowerCase() === "#admin") setScreen("admin");
+    }
+  });
+
+  // Quando o usuário volta pelo link de redefinição de senha do e-mail
+  supabaseClient.auth.onAuthStateChange(async (event) => {
+    if (event === "PASSWORD_RECOVERY") {
+      const nova = window.prompt("Defina sua nova senha (mínimo 6 caracteres):");
+      if (nova === null) return;
+      if (nova.length < 6) {
+        window.alert("A senha precisa ter ao menos 6 caracteres.");
+        return;
+      }
+      const { error } = await supabaseClient.auth.updateUser({ password: nova });
+      if (error) {
+        window.alert("Erro ao atualizar a senha: " + error.message);
+        return;
+      }
+      adminAuthed = true;
+      await loadRemoteLeads();
+      syncAdminAccess();
+      setScreen("admin");
+      window.alert("Senha atualizada com sucesso!");
     }
   });
 }

@@ -420,6 +420,44 @@ body.light-theme th {
   background: var(--primary-dark);
 }
 
+.admin-login-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.remember-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--muted-dark);
+  cursor: pointer;
+}
+
+.remember-check input {
+  accent-color: var(--gold);
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.link-button:hover {
+  color: var(--primary-dark);
+}
+
 .secondary-action {
   background: rgba(255, 255, 255, 0.035);
   color: var(--foreground);

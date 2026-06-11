@@ -117,6 +117,10 @@
 
               <label>E-mail<input name="adminEmail" type="email" autocomplete="username" required /></label>
               <label>Senha<input name="adminPassword" type="password" autocomplete="current-password" required /></label>
+              <div class="admin-login-row">
+                <label class="remember-check"><input type="checkbox" name="adminRemember" checked /> Manter conectado</label>
+                <button type="button" class="link-button" id="admin-forgot">Esqueceu a senha?</button>
+              </div>
               <p class="login-error" id="admin-login-error" role="alert"></p>
 
               <button class="primary-action" type="submit">Entrar</button>
