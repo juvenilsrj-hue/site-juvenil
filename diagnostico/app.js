@@ -474,6 +474,8 @@ function applyRouteFromHash() {
 
 async function handleAdminLogin(event) {
   event.preventDefault();
+  const lv = document.getElementById("login-view");
+  if (lv && lv.hidden) return;
   const data = new FormData(adminLoginForm);
   const email = String(data.get("adminEmail") || "").trim().toLowerCase();
   const password = String(data.get("adminPassword") || "");
@@ -517,10 +519,11 @@ async function logoutAdmin() {
 
 async function handleForgotPassword() {
   if (!supabaseClient) return;
-  const email = String(new FormData(adminLoginForm).get("adminEmail") || "").trim().toLowerCase();
+  const field = document.getElementById("forgot-email");
+  const email = String(field ? field.value : "").trim().toLowerCase();
   if (!email) {
     adminLoginError.style.color = "";
-    adminLoginError.textContent = "Digite seu e-mail no campo acima para receber o link.";
+    adminLoginError.textContent = "Digite seu e-mail para receber o link.";
     return;
   }
   const redirectTo = location.href.split("#")[0] + "#admin";
@@ -531,7 +534,7 @@ async function handleForgotPassword() {
     return;
   }
   adminLoginError.style.color = "var(--gold)";
-  adminLoginError.textContent = "Pronto! Enviamos um link de redefinição para o seu e-mail.";
+  adminLoginError.textContent = "Link enviado! Verifique sua caixa de entrada e o spam.";
 }
 
 function currentDiagnosticKey() {
@@ -1355,9 +1358,30 @@ restoreDraft();
 renderQuestions();
 applyRouteFromHash();
 
-// Liga o link "Esqueceu a senha?"
+// "Esqueceu a senha?" abre uma tela própria com campo de e-mail dedicado
 const adminForgot = document.getElementById("admin-forgot");
-if (adminForgot) adminForgot.addEventListener("click", handleForgotPassword);
+const loginView = document.getElementById("login-view");
+const forgotView = document.getElementById("forgot-view");
+function toggleForgot(show) {
+  if (!loginView || !forgotView) return;
+  loginView.hidden = show;
+  forgotView.hidden = !show;
+  loginView.querySelectorAll("input").forEach((i) => { i.disabled = show; });
+  adminLoginError.textContent = "";
+  adminLoginError.style.color = "";
+  if (show) {
+    const typed = adminLoginForm.querySelector('input[name="adminEmail"]');
+    const ff = document.getElementById("forgot-email");
+    if (ff) { ff.value = typed ? typed.value : ""; ff.focus(); }
+  }
+}
+if (adminForgot) adminForgot.addEventListener("click", () => toggleForgot(true));
+const forgotBack = document.getElementById("forgot-back");
+if (forgotBack) forgotBack.addEventListener("click", () => toggleForgot(false));
+const forgotSend = document.getElementById("forgot-send");
+if (forgotSend) forgotSend.addEventListener("click", handleForgotPassword);
+const forgotEmailInput = document.getElementById("forgot-email");
+if (forgotEmailInput) forgotEmailInput.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); handleForgotPassword(); } });
 
 // Olhinho: revela a senha enquanto o botão está pressionado
 const adminPassToggle = document.getElementById("admin-pass-toggle");
