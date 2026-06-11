@@ -412,7 +412,7 @@ body.light-theme th {
 
 .primary-action {
   background: var(--primary);
-  color: var(--paper);
+  color: #111;
   background-image: linear-gradient(135deg, #e6c06a 0%, #d8ae54 100%);
 }
 
@@ -662,6 +662,20 @@ legend {
 .radio-card strong,
 .radio-card small {
   display: block;
+}
+
+.radio-card:has(input:checked) {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.radio-card:has(input:checked) strong,
+.radio-card:has(input:checked) small {
+  color: #111;
+}
+
+.radio-card:has(input:checked) input {
+  accent-color: #111;
 }
 
 .progress-row {
