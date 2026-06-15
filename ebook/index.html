@@ -18,6 +18,12 @@
   <style type="text/tailwindcss">
     body { background-color: #0B1521; }
     .hero-glow { background: radial-gradient(ellipse 70% 60% at 70% 0%, rgba(216,174,84,0.10), transparent 60%); }
+    /* Card que vira (flip 3D) no hover */
+    .flip { perspective: 1200px; }
+    .flip-inner { position: relative; width: 100%; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
+    .flip:hover .flip-inner { transform: rotateY(180deg); }
+    .flip-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .flip-back { transform: rotateY(180deg); }
   </style>
 </head>
 <body class="font-sans text-foreground">
@@ -66,19 +72,61 @@
       <h2 class="font-display font-black text-3xl md:text-4xl leading-tight mb-8">E-books de Pós-venda</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- E-BOOK: A próxima venda começa no pós-venda -->
-        <article class="group flex flex-col bg-card-gradient border border-border rounded-2xl overflow-hidden shadow-card-soft hover:border-brand/40 transition-colors">
-          <img src="../assets/ebooks/proxima-venda-pos-venda.png" alt="A próxima venda começa no pós-venda" class="w-full aspect-[16/9] object-cover" onerror="this.style.display='none'" />
-          <div class="p-5 flex justify-center">
-            <a href="https://go.hotmart.com/V106315038R?dp=1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-6 py-3 rounded-lg shadow-brand hover:opacity-90 transition-opacity text-sm">Quero o e-book <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        <!-- E-BOOK: A próxima venda começa no pós-venda (card flip) -->
+        <article class="flip h-[22rem]">
+          <div class="flip-inner">
+            <!-- FRENTE: chamada -->
+            <div class="flip-face flex flex-col text-center bg-card-gradient border border-border rounded-2xl shadow-card-soft p-7">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-4 right-4 w-4 h-4 text-brand/40" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
+              <div class="flex-1 flex flex-col justify-center">
+                <span class="text-xs font-semibold uppercase tracking-[0.18em] text-brand mb-3">E-book · Pós-venda</span>
+                <h3 class="font-display font-bold text-xl mb-3 leading-snug">A próxima venda começa no pós-venda</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed">Transforme o atendimento de hoje na recompra de amanhã.</p>
+              </div>
+              <a href="https://go.hotmart.com/V106315038R?dp=1" target="_blank" rel="noopener noreferrer" class="self-center inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-6 py-3 rounded-lg shadow-brand hover:opacity-90 transition-opacity text-sm">Quero o e-book <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            </div>
+            <!-- VERSO: resumo -->
+            <div class="flip-face flip-back flex flex-col bg-card-gradient border border-brand/40 rounded-2xl shadow-card-soft p-7">
+              <div class="flex-1">
+                <p class="text-brand text-xs font-semibold uppercase tracking-[0.18em] mb-3">O que você vai encontrar</p>
+                <ul class="space-y-2 text-sm text-muted-foreground text-left">
+                  <li class="flex gap-2"><span class="text-brand shrink-0">›</span> Pós-venda que gera recompra e recorrência</li>
+                  <li class="flex gap-2"><span class="text-brand shrink-0">›</span> O que fazer logo após a entrega</li>
+                  <li class="flex gap-2"><span class="text-brand shrink-0">›</span> Os erros que afastam o cliente</li>
+                  <li class="flex gap-2"><span class="text-brand shrink-0">›</span> Rotinas simples de retenção e fidelização</li>
+                </ul>
+              </div>
+              <a href="https://go.hotmart.com/V106315038R?dp=1" target="_blank" rel="noopener noreferrer" class="self-center inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-6 py-3 rounded-lg shadow-brand hover:opacity-90 transition-opacity text-sm mt-3">Quero o e-book <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            </div>
           </div>
         </article>
 
-        <!-- E-BOOK: Existe mais receita dentro de cada atendimento -->
-        <article class="group flex flex-col bg-card-gradient border border-border rounded-2xl overflow-hidden shadow-card-soft hover:border-brand/40 transition-colors">
-          <img src="../assets/ebooks/mais-receita-atendimento.png" alt="Existe mais receita dentro de cada atendimento" class="w-full aspect-[16/9] object-cover" onerror="this.style.display='none'" />
-          <div class="p-5 flex justify-center">
-            <a href="https://go.hotmart.com/J106336685J?dp=1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-6 py-3 rounded-lg shadow-brand hover:opacity-90 transition-opacity text-sm">Quero o e-book <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        <!-- E-BOOK: Existe mais receita dentro de cada atendimento (card flip) -->
+        <article class="flip h-[22rem]">
+          <div class="flip-inner">
+            <!-- FRENTE: chamada -->
+            <div class="flip-face flex flex-col text-center bg-card-gradient border border-border rounded-2xl shadow-card-soft p-7">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-4 right-4 w-4 h-4 text-brand/40" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
+              <div class="flex-1 flex flex-col justify-center">
+                <span class="text-xs font-semibold uppercase tracking-[0.18em] text-brand mb-3">E-book · Pós-venda</span>
+                <h3 class="font-display font-bold text-xl mb-3 leading-snug">Existe mais receita dentro de cada atendimento</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed">Como aumentar ticket médio, agregados e vendas complementares com relevância, confiança e estratégia.</p>
+              </div>
+              <a href="https://go.hotmart.com/J106336685J?dp=1" target="_blank" rel="noopener noreferrer" class="self-center inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-6 py-3 rounded-lg shadow-brand hover:opacity-90 transition-opacity text-sm">Quero o e-book <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            </div>
+            <!-- VERSO: resumo -->
+            <div class="flip-face flip-back flex flex-col bg-card-gradient border border-brand/40 rounded-2xl shadow-card-soft p-7">
+              <div class="flex-1">
+                <p class="text-brand text-xs font-semibold uppercase tracking-[0.18em] mb-3">O que você vai encontrar</p>
+                <ul class="space-y-2 text-sm text-muted-foreground text-left">
+                  <li class="flex gap-2"><span class="text-brand shrink-0">›</span> Como aumentar o ticket médio</li>
+                  <li class="flex gap-2"><span class="text-brand shrink-0">›</span> Vender agregados e complementares</li>
+                  <li class="flex gap-2"><span class="text-brand shrink-0">›</span> Atendimento com relevância e confiança</li>
+                  <li class="flex gap-2"><span class="text-brand shrink-0">›</span> Estratégia pra extrair mais de cada venda</li>
+                </ul>
+              </div>
+              <a href="https://go.hotmart.com/J106336685J?dp=1" target="_blank" rel="noopener noreferrer" class="self-center inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-6 py-3 rounded-lg shadow-brand hover:opacity-90 transition-opacity text-sm mt-3">Quero o e-book <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            </div>
           </div>
         </article>
 
