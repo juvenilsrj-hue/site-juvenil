@@ -1,0 +1,30 @@
+name: Keep Supabase awake
+
+# Mantem o projeto Supabase do site ativo.
+# No plano gratis o Supabase pausa o projeto apos ~7 dias sem atividade.
+# Este job faz uma consulta leve ao banco as segundas e quintas, evitando a pausa.
+# IMPORTANTE: so funciona com o projeto JA retomado (Resume project). Ele previne
+# pausas futuras; nao retoma um projeto que ja esta pausado.
+
+on:
+  schedule:
+    - cron: "17 12 * * 1,4"   # segundas e quintas, 12:17 UTC (gap maximo ~4 dias)
+  workflow_dispatch: {}        # permite rodar manualmente pela aba "Actions"
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST
+        run: |
+          echo "Pingando o Supabase para evitar a pausa do plano gratis..."
+          code=$(curl -sS --max-time 30 -o /dev/null -w "%{http_code}" \
+            "https://mkhzsynndqnljczkggia.supabase.co/rest/v1/diagnostico_leads?select=id&limit=1" \
+            -H "apikey: sb_publishable_d_Vjkmbj3g6JHO64W3iVOQ_vUq_Xqn0" \
+            -H "Authorization: Bearer sb_publishable_d_Vjkmbj3g6JHO64W3iVOQ_vUq_Xqn0" || true)
+          echo "HTTP status: $code"
+          if [ "$code" = "000" ]; then
+            echo "Sem resposta do projeto (provavelmente pausado). Clique em 'Resume project' no Supabase."
+          else
+            echo "Requisicao chegou ao projeto (conta como atividade)."
+          fi
