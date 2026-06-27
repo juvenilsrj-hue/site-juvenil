@@ -2,7 +2,7 @@
 # O "build" apenas copia os arquivos do site para uma pasta limpa (_site),
 # que é o que o Netlify publica. Isso evita as configs de Remix/Vite herdadas.
 [build]
-  command = "rm -rf _site && mkdir _site && cp index.html _site/ && cp -R assets blog diagnostico ebook treinamentos _site/"
+  command = "rm -rf _site && mkdir _site && cp index.html _site/ && cp -R assets blog diagnostico ebook treinamentos privacidade _site/"
   publish = "_site"
 
 # Garante que o Netlify não tente processar funções serverless (resto do Remix).
