@@ -36,8 +36,8 @@
       <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-5">Treinamentos</p>
       <h1 class="font-display font-black text-4xl md:text-5xl leading-tight mb-6">Aprenda hoje. <span class="text-brand">Aplique amanhã.</span></h1>
       <p class="text-lg text-muted-foreground leading-relaxed mb-9 max-w-2xl mx-auto">Treinamentos sobre vendas, pós-venda e liderança, estruturados para transformar conhecimento em prática, fortalecer competências e gerar resultados mais consistentes.</p>
-      <span class="inline-flex items-center gap-2 bg-secondary text-muted-foreground font-semibold px-8 py-4 rounded-lg text-lg cursor-not-allowed">Em breve</span>
-      <p class="text-sm text-muted-foreground mt-4">Disponível em breve.</p>
+      <a href="#lista" class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-8 py-4 rounded-lg text-lg shadow-brand hover:opacity-90 transition-opacity">Entrar na lista de espera</a>
+      <p class="text-sm text-muted-foreground mt-4">Turmas em preparação. Entre na lista e seja avisado em primeiro lugar quando abrirem.</p>
     </div>
   </section>
 
@@ -78,11 +78,25 @@
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="py-20 text-center">
-    <div class="max-w-2xl mx-auto px-6 lg:px-10">
-      <h2 class="font-display font-black text-3xl md:text-4xl leading-tight mb-6">Pronto para <span class="text-brand">subir de nível?</span></h2>
-      <span class="inline-flex items-center gap-2 bg-secondary text-muted-foreground font-semibold px-8 py-4 rounded-lg text-lg cursor-not-allowed">Em breve</span>
+  <!-- LISTA DE ESPERA -->
+  <section id="lista" class="py-20 text-center scroll-mt-24">
+    <div class="max-w-xl mx-auto px-6 lg:px-10">
+      <h2 class="font-display font-black text-3xl md:text-4xl leading-tight mb-4">Pronto para <span class="text-brand">subir de nível?</span></h2>
+      <p class="text-muted-foreground mb-8">Os treinamentos estão sendo preparados. Entre na lista de prioridade e seja avisado em primeiro lugar quando as turmas abrirem.</p>
+      <form id="waitlist-form" class="flex flex-col gap-3 text-left">
+        <input id="wl-name" type="text" autocomplete="name" placeholder="Seu nome" class="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand transition-colors" />
+        <input id="wl-email" type="email" autocomplete="email" required placeholder="Seu melhor e-mail" class="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand transition-colors" />
+        <button type="submit" id="wl-submit" class="inline-flex items-center justify-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-7 py-3.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity">Entrar na lista de espera</button>
+      </form>
+      <p id="wl-msg" class="text-sm mt-4 min-h-[1.25rem]" role="status" aria-live="polite"></p>
+      <p class="text-xs text-muted-foreground mt-1">Usamos seu e-mail apenas para avisar sobre as turmas. Veja a <a href="/privacidade/" class="underline hover:text-foreground">Política de Privacidade</a>.</p>
+    </div>
+  </section>
+
+  <!-- PROPOSTA IN-COMPANY -->
+  <section class="pb-20 text-center">
+    <div class="max-w-xl mx-auto px-6 lg:px-10 border-t border-border/50 pt-12">
+      <p class="text-muted-foreground text-sm">Quer levar um treinamento para a sua equipe agora? <a href="mailto:contato@juvenill.com.br?subject=Proposta%20in-company" class="text-brand font-semibold hover:underline">Solicite uma proposta in-company →</a></p>
     </div>
   </section>
 
@@ -90,5 +104,46 @@
     <a href="../index.html" class="font-display font-black text-foreground">Juvenill <span class="text-brand">Ribêiro</span><span class="text-brand">.</span></a>
     <p class="mt-2">© 2026 Juvenill. Todos os direitos reservados.</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function () {
+      var SB_URL = "https://mkhzsynndqnljczkggia.supabase.co";
+      var SB_KEY = "sb_publishable_d_Vjkmbj3g6JHO64W3iVOQ_vUq_Xqn0";
+      var client = (window.supabase && SB_URL) ? window.supabase.createClient(SB_URL, SB_KEY) : null;
+      var form = document.getElementById("waitlist-form");
+      var msg = document.getElementById("wl-msg");
+      var btn = document.getElementById("wl-submit");
+      if (!form) return;
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        var name = (document.getElementById("wl-name").value || "").trim();
+        var email = (document.getElementById("wl-email").value || "").trim();
+        if (!email) return;
+        msg.style.color = "";
+        msg.textContent = "Enviando...";
+        btn.disabled = true;
+        var ok = false;
+        if (client) {
+          try {
+            var res = await client.from("treinamento_waitlist").insert({ name: name || null, email: email });
+            if (!res.error) ok = true;
+            else console.warn("waitlist insert:", res.error.message || res.error);
+          } catch (err) {
+            console.warn("waitlist exception:", err);
+          }
+        }
+        if (ok) {
+          form.reset();
+          msg.style.color = "#D8AE54";
+          msg.textContent = "Pronto! Você está na lista. Avisaremos assim que as turmas abrirem.";
+        } else {
+          msg.style.color = "#e08a8a";
+          msg.innerHTML = 'Não foi possível registrar agora. Escreva para <a href="mailto:contato@juvenill.com.br?subject=Lista%20de%20espera%20treinamentos" class="underline">contato@juvenill.com.br</a> que eu coloco você na lista.';
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
 </body>
 </html>

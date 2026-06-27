@@ -462,13 +462,13 @@ function setScreen(screen) {
 function updateRouteForScreen(screen) {
   const base = `${location.pathname}${location.search}`;
   if (screen === "diagnostics") history.replaceState(null, "", `${base}#diagnostico`);
-  if (screen === "admin") history.replaceState(null, "", `${base}#admin`);
+  if (screen === "admin") history.replaceState(null, "", `${base}#acesso-restrito-jr`);
   if (screen === "start") history.replaceState(null, "", base);
 }
 
 function applyRouteFromHash() {
   const hash = location.hash.toLowerCase();
-  if (hash === "#admin") setScreen("admin");
+  if (hash === "#acesso-restrito-jr") setScreen("admin");
   if (hash === "#diagnostico" || hash === "#diagnosticos") setScreen("diagnostics");
 }
 
@@ -526,7 +526,7 @@ async function handleForgotPassword() {
     adminLoginError.textContent = "Digite seu e-mail para receber o link.";
     return;
   }
-  const redirectTo = location.href.split("#")[0] + "#admin";
+  const redirectTo = location.href.split("#")[0] + "#acesso-restrito-jr";
   const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: redirectTo });
   if (error) {
     adminLoginError.style.color = "";
@@ -1401,7 +1401,7 @@ if (supabaseClient) {
       adminAuthed = true;
       await loadRemoteLeads();
       syncAdminAccess();
-      if (location.hash.toLowerCase() === "#admin") setScreen("admin");
+      if (location.hash.toLowerCase() === "#acesso-restrito-jr") setScreen("admin");
     }
   });
 
