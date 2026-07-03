@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /blog/_TEMPLATE.html
+
+Sitemap: https://juvenillribeiro.com.br/sitemap.xml

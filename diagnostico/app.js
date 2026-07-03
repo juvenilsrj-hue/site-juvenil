@@ -1356,6 +1356,24 @@ window.addEventListener("hashchange", applyRouteFromHash);
 syncAdminAccess();
 restoreDraft();
 renderQuestions();
+
+// Pré-seleciona o tipo de diagnóstico vindo dos botões da home (?tipo=lideranca | ?tipo=empresarial)
+(function () {
+  try {
+    const tipo = (new URLSearchParams(location.search).get("tipo") || "").toLowerCase();
+    const mapa = { lideranca: "leadership", "liderança": "leadership", lider: "leadership", empresarial: "business", empresa: "business", operacao: "business" };
+    const valor = mapa[tipo];
+    if (!valor) return;
+    const radio = document.querySelector(`input[name="diagnostic"][value="${valor}"]`);
+    if (radio && !radio.checked) {
+      radio.checked = true;
+      renderQuestions();
+    }
+  } catch (err) {
+    /* parâmetro inválido não pode quebrar a página */
+  }
+})();
+
 applyRouteFromHash();
 
 // "Esqueceu a senha?" abre uma tela própria com campo de e-mail dedicado
