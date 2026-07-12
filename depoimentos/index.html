@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Depoimento profissional — Trajetória de Juvenill Ribêiro</title>
+  <meta name="description" content="Compartilhe sua percepção sobre a trajetória profissional de Juvenill Ribêiro." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/tw-config.js"></script>
+  <style type="text/tailwindcss">
+    body { background-color: #0B1521; }
+    .hero-glow { background: radial-gradient(ellipse 70% 60% at 70% 0%, rgba(216,174,84,0.10), transparent 60%); }
+    .campo { @apply w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-brand transition-colors; }
+    .rotulo { @apply block font-semibold text-foreground mb-2; }
+    .bloco { @apply bg-card-gradient border border-border rounded-2xl p-6 md:p-7 shadow-card-soft; }
+    .opcao { @apply flex items-start gap-3 py-2 cursor-pointer text-muted-foreground hover:text-foreground transition-colors; }
+    .opcao input { @apply mt-1 w-4 h-4 shrink-0 accent-[#D8AE54]; }
+  </style>
+</head>
+<body class="font-sans text-foreground">
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/40">
+    <div class="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="font-display font-black text-lg tracking-tight">Juvenill <span class="text-brand">Ribêiro</span><span class="text-brand">.</span></a>
+      <a href="../index.html" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">← Voltar ao site</a>
+    </div>
+  </header>
+
+  <!-- INTRODUÇÃO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 hero-glow"></div>
+    <div class="relative max-w-3xl mx-auto px-6 pt-16 pb-10">
+      <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-5">Depoimentos</p>
+      <h1 class="font-display font-black text-3xl md:text-4xl leading-tight mb-6">Depoimento profissional — Trajetória de Juvenill Ribêiro</h1>
+      <div class="text-muted-foreground leading-relaxed space-y-4">
+        <p>Olá!</p>
+        <p>Estou reunindo alguns depoimentos de profissionais que acompanharam minha trajetória e tiveram contato direto com minha forma de trabalhar, liderar e conduzir desafios ao longo da carreira.</p>
+        <p>Seu relato será muito importante para apresentar, de maneira verdadeira, a percepção de quem esteve comigo no dia a dia e acompanhou minha atuação profissional.</p>
+        <p>O preenchimento leva apenas alguns minutos. Fique à vontade para escrever com suas próprias palavras. Algumas perguntas são apenas orientadoras e não precisam ser respondidas separadamente no depoimento final.</p>
+        <p>Desde já, agradeço pela confiança, pela parceria e por fazer parte da minha trajetória.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO -->
+  <section class="pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+      <form id="dep-form" class="space-y-6">
+
+        <div class="bloco">
+          <label class="rotulo" for="dNome">1. Nome completo <span class="text-brand">*</span></label>
+          <input id="dNome" class="campo" type="text" autocomplete="name" required />
+        </div>
+
+        <div class="bloco">
+          <label class="rotulo" for="dCargo">2. Cargo atual</label>
+          <input id="dCargo" class="campo" type="text" autocomplete="organization-title" />
+        </div>
+
+        <div class="bloco">
+          <label class="rotulo" for="dEmpresa">3. Empresa ou grupo em que atua atualmente</label>
+          <input id="dEmpresa" class="campo" type="text" autocomplete="organization" />
+        </div>
+
+        <div class="bloco">
+          <label class="rotulo" for="dContexto">4. Em qual empresa, período ou contexto profissional trabalhamos juntos?</label>
+          <textarea id="dContexto" class="campo" rows="3" placeholder="Exemplo: Trabalhamos juntos no Grupo X entre 2018 e 2024, período em que fui gestor direto do Juvenill."></textarea>
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">5. Qual era a sua relação profissional comigo?</p>
+          <label class="opcao"><input type="radio" name="relacao" value="Gestor direto" /><span>Gestor direto</span></label>
+          <label class="opcao"><input type="radio" name="relacao" value="Diretor ou liderança da empresa" /><span>Diretor ou liderança da empresa</span></label>
+          <label class="opcao"><input type="radio" name="relacao" value="Colega de gestão" /><span>Colega de gestão</span></label>
+          <label class="opcao"><input type="radio" name="relacao" value="Parceiro de negócio" /><span>Parceiro de negócio</span></label>
+          <label class="opcao"><input type="radio" name="relacao" value="Profissional de outra área" /><span>Profissional de outra área</span></label>
+          <label class="opcao"><input type="radio" name="relacao" value="Outra" /><span>Outra</span></label>
+          <input id="dRelacaoOutra" class="campo mt-2 hidden" type="text" placeholder="Qual?" />
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">6. Qual característica mais se destacava na minha atuação profissional?</p>
+          <div class="grid sm:grid-cols-2 gap-x-6">
+            <label class="opcao"><input type="checkbox" name="carac" value="Liderança" /><span>Liderança</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Desenvolvimento de pessoas" /><span>Desenvolvimento de pessoas</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Gestão de resultados" /><span>Gestão de resultados</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Visão estratégica" /><span>Visão estratégica</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Organização e processos" /><span>Organização e processos</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Capacidade de execução" /><span>Capacidade de execução</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Relacionamento interpessoal" /><span>Relacionamento interpessoal</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Gestão de conflitos" /><span>Gestão de conflitos</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Comprometimento" /><span>Comprometimento</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Ética e responsabilidade" /><span>Ética e responsabilidade</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Foco no cliente" /><span>Foco no cliente</span></label>
+            <label class="opcao"><input type="checkbox" name="carac" value="Outra" id="caracOutraCheck" /><span>Outra</span></label>
+          </div>
+          <input id="dCaracOutra" class="campo mt-2 hidden" type="text" placeholder="Qual?" />
+        </div>
+
+        <div class="bloco">
+          <label class="rotulo" for="dProjeto">7. Existe algum projeto, desafio ou resultado que represente bem minha forma de trabalhar?</label>
+          <p class="text-sm text-muted-foreground mb-3">Você pode comentar sobre um momento específico, uma mudança implementada, um desafio superado, um resultado alcançado ou uma situação marcante que tenha acompanhado.</p>
+          <textarea id="dProjeto" class="campo" rows="4"></textarea>
+        </div>
+
+        <div class="bloco">
+          <label class="rotulo" for="dLideranca">8. Como você descreveria minha forma de liderar e me relacionar com as pessoas?</label>
+          <textarea id="dLideranca" class="campo" rows="4"></textarea>
+        </div>
+
+        <div class="bloco">
+          <label class="rotulo" for="dContribuicao">9. Na sua percepção, que contribuição deixei para a equipe, para a operação ou para a empresa?</label>
+          <textarea id="dContribuicao" class="campo" rows="4"></textarea>
+        </div>
+
+        <div class="bloco border-brand/40">
+          <label class="rotulo" for="dDepoimento">10. Depoimento final <span class="text-brand">*</span></label>
+          <p class="text-sm text-muted-foreground mb-3">Com base nas perguntas anteriores, escreva um depoimento breve, de preferência entre 5 e 10 linhas, contando como foi trabalhar comigo e o que mais marcou minha atuação profissional.</p>
+          <p class="text-sm text-muted-foreground mb-3">Não é necessário utilizar linguagem formal. O mais importante é que o relato represente sua percepção verdadeira.</p>
+          <textarea id="dDepoimento" class="campo" rows="7" required></textarea>
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">11. Você autoriza a publicação deste depoimento em meu site, redes sociais, apresentações e materiais profissionais? <span class="text-brand">*</span></p>
+          <label class="opcao"><input type="radio" name="autorizacao" value="Publicação completa, com nome, cargo, empresa e foto" required /><span>Sim, autorizo a publicação do depoimento completo, com meu nome, cargo, empresa e foto.</span></label>
+          <label class="opcao"><input type="radio" name="autorizacao" value="Com nome e cargo, sem foto" /><span>Sim, autorizo a publicação com meu nome e cargo, mas sem foto.</span></label>
+          <label class="opcao"><input type="radio" name="autorizacao" value="Apenas com nome e cargo" /><span>Sim, autorizo a publicação apenas com meu nome e cargo.</span></label>
+          <label class="opcao"><input type="radio" name="autorizacao" value="Contatar antes da publicação" /><span>Prefiro que entrem em contato comigo antes da publicação.</span></label>
+          <label class="opcao"><input type="radio" name="autorizacao" value="Não autorizo a publicação" /><span>Não autorizo a publicação.</span></label>
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">12. Você autoriza pequenos ajustes de pontuação, concordância ou redução do texto, desde que o sentido original seja preservado? <span class="text-brand">*</span></p>
+          <label class="opcao"><input type="radio" name="ajustes" value="Sim" required /><span>Sim</span></label>
+          <label class="opcao"><input type="radio" name="ajustes" value="Não" /><span>Não</span></label>
+          <label class="opcao"><input type="radio" name="ajustes" value="Prefiro aprovar a versão final antes da publicação" /><span>Prefiro aprovar a versão final antes da publicação</span></label>
+        </div>
+
+        <div class="bloco">
+          <label class="rotulo" for="dFoto">13. Foto profissional <span class="text-sm font-normal text-muted-foreground">(opcional)</span></label>
+          <p class="text-sm text-muted-foreground mb-3">Caso se sinta confortável, envie uma foto que possa acompanhar o depoimento.</p>
+          <input id="dFoto" class="campo" type="file" accept="image/*" />
+          <p class="text-xs text-muted-foreground mt-2">Formatos de imagem, até 5 MB.</p>
+        </div>
+
+        <p class="text-xs text-muted-foreground">Seus dados e seu relato serão usados conforme a autorização escolhida acima. Saiba mais na <a href="/privacidade/" class="underline hover:text-foreground">Política de Privacidade</a>.</p>
+
+        <button type="submit" id="dep-enviar" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-10 py-4 rounded-lg shadow-brand hover:opacity-90 transition-opacity text-lg">Enviar depoimento</button>
+        <p id="dep-msg" class="text-sm min-h-[1.25rem]" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- CONFIRMAÇÃO (aparece após o envio) -->
+      <div id="dep-obrigado" class="hidden bloco text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-brand mx-auto mb-6" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+        <div class="text-muted-foreground leading-relaxed space-y-4 text-left">
+          <p>Muito obrigado por dedicar seu tempo e compartilhar sua percepção sobre minha trajetória.</p>
+          <p>Mais do que contribuir com minha apresentação profissional, seu depoimento representa uma parte importante das relações, dos desafios e dos aprendizados construídos ao longo da minha carreira.</p>
+          <p>Antes de qualquer publicação, o conteúdo será tratado com respeito, responsabilidade e fidelidade ao seu relato.</p>
+          <p>Meu sincero agradecimento.</p>
+          <p class="font-display font-bold text-foreground">Juvenill Ribêiro</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-border py-10 text-center text-sm text-muted-foreground">
+    <a href="../index.html" class="font-display font-black text-foreground">Juvenill <span class="text-brand">Ribêiro</span><span class="text-brand">.</span></a>
+    <p class="mt-2">© 2026 Juvenill. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function () {
+      var SB_URL = "https://mkhzsynndqnljczkggia.supabase.co";
+      var SB_KEY = "sb_publishable_d_Vjkmbj3g6JHO64W3iVOQ_vUq_Xqn0";
+      var client = (window.supabase && SB_URL) ? window.supabase.createClient(SB_URL, SB_KEY) : null;
+      var form = document.getElementById("dep-form");
+      var msg = document.getElementById("dep-msg");
+      var btn = document.getElementById("dep-enviar");
+      var obrigado = document.getElementById("dep-obrigado");
+
+      // Campos "Outra" aparecem só quando marcados
+      document.querySelectorAll('input[name="relacao"]').forEach(function (r) {
+        r.addEventListener("change", function () {
+          document.getElementById("dRelacaoOutra").classList.toggle("hidden", form.relacao.value !== "Outra");
+        });
+      });
+      var caracOutra = document.getElementById("caracOutraCheck");
+      if (caracOutra) caracOutra.addEventListener("change", function () {
+        document.getElementById("dCaracOutra").classList.toggle("hidden", !caracOutra.checked);
+      });
+
+      function v(id) { var e = document.getElementById(id); return e ? (e.value || "").trim() : ""; }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        if (!client) {
+          msg.style.color = "#e08a8a";
+          msg.innerHTML = 'Conexão indisponível. Envie seu depoimento para <a href="mailto:contato@juvenill.com.br?subject=Depoimento%20profissional" class="underline">contato@juvenill.com.br</a>.';
+          return;
+        }
+        msg.style.color = "";
+        msg.textContent = "Enviando...";
+        btn.disabled = true;
+
+        try {
+          // Foto (opcional) sobe primeiro
+          var fotoUrl = null;
+          var fileInput = document.getElementById("dFoto");
+          var file = fileInput && fileInput.files && fileInput.files[0];
+          if (file) {
+            if (file.size > 5 * 1024 * 1024) throw new Error("A foto passa de 5 MB. Escolha uma imagem menor.");
+            var ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "") || "jpg";
+            var path = Date.now() + "-" + Math.random().toString(36).slice(2, 8) + "." + ext;
+            var up = await client.storage.from("depoimentos-fotos").upload(path, file, { contentType: file.type || "image/jpeg" });
+            if (up.error) {
+              console.warn("upload foto:", up.error.message || up.error);
+            } else {
+              var pub = client.storage.from("depoimentos-fotos").getPublicUrl(path);
+              fotoUrl = pub && pub.data ? pub.data.publicUrl : null;
+            }
+          }
+
+          var relacao = form.relacao.value || null;
+          if (relacao === "Outra" && v("dRelacaoOutra")) relacao = "Outra: " + v("dRelacaoOutra");
+          var caracs = Array.from(document.querySelectorAll('input[name="carac"]:checked')).map(function (c) { return c.value; });
+          if (caracs.indexOf("Outra") >= 0 && v("dCaracOutra")) caracs[caracs.indexOf("Outra")] = "Outra: " + v("dCaracOutra");
+
+          var res = await client.from("depoimentos").insert({
+            nome: v("dNome"),
+            cargo: v("dCargo") || null,
+            empresa: v("dEmpresa") || null,
+            contexto: v("dContexto") || null,
+            relacao: relacao,
+            caracteristicas: caracs.length ? caracs : null,
+            projeto: v("dProjeto") || null,
+            lideranca: v("dLideranca") || null,
+            contribuicao: v("dContribuicao") || null,
+            depoimento: v("dDepoimento"),
+            autorizacao: form.autorizacao.value,
+            ajustes: form.ajustes.value,
+            foto_url: fotoUrl
+          });
+          if (res.error) throw new Error(res.error.message || "Erro ao salvar");
+
+          form.classList.add("hidden");
+          obrigado.classList.remove("hidden");
+          obrigado.scrollIntoView({ behavior: "smooth", block: "center" });
+        } catch (err) {
+          console.warn("depoimento:", err);
+          msg.style.color = "#e08a8a";
+          msg.innerHTML = 'Não foi possível enviar agora (' + (err.message || 'erro') + '). Tente novamente em instantes ou envie para <a href="mailto:contato@juvenill.com.br?subject=Depoimento%20profissional" class="underline">contato@juvenill.com.br</a>.';
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>
