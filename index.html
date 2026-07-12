@@ -367,6 +367,17 @@
       </div>
     </section>
 
+    <!-- ===== DEPOIMENTOS (só aparece quando houver aprovados; máximo 5) ===== -->
+    <section id="depoimentos" class="hidden py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="max-w-3xl mb-14">
+          <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">Depoimentos</p>
+          <h2 class="font-display font-black text-4xl md:text-5xl leading-tight">O que dizem <span class="text-brand">sobre mim</span></h2>
+        </div>
+        <div id="depoimentos-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
     <!-- ===== PROGRAMAS COMPLEMENTARES ===== -->
     <section id="complementares" class="pt-20 lg:pt-28 pb-10 lg:pb-14">
       <div class="max-w-7xl mx-auto px-6 lg:px-10">
@@ -564,6 +575,33 @@
       document.querySelectorAll('[data-diagnostic-link]').forEach(function (link) {
         link.href = isLocal ? localUrl : productionUrl;
       });
+    })();
+
+    // Depoimentos aprovados (máximo 5): a seção só aparece se houver algum.
+    (function () {
+      var sec = document.getElementById('depoimentos');
+      var grid = document.getElementById('depoimentos-grid');
+      if (!sec || !grid) return;
+      function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+      fetch('https://mkhzsynndqnljczkggia.supabase.co/rest/v1/depoimentos_publicos?select=nome,cargo,empresa,foto_url,depoimento&order=ordem.asc.nullslast,created_at.asc&limit=5', {
+        headers: { apikey: 'sb_publishable_d_Vjkmbj3g6JHO64W3iVOQ_vUq_Xqn0' }
+      }).then(function (r) { return r.ok ? r.json() : []; }).then(function (rows) {
+        if (!rows || !rows.length) return;
+        grid.innerHTML = rows.map(function (d) {
+          var meta = [esc(d.cargo), esc(d.empresa)].filter(Boolean).join(' · ');
+          var foto = d.foto_url
+            ? '<img src="' + esc(d.foto_url) + '" alt="' + esc(d.nome) + '" loading="lazy" class="w-12 h-12 rounded-full object-cover ring-1 ring-border shrink-0" />'
+            : '<div class="w-12 h-12 rounded-full bg-brand/15 text-brand font-display font-black flex items-center justify-center shrink-0">' + esc((d.nome || '?').trim().charAt(0).toUpperCase()) + '</div>';
+          return '<figure class="flex flex-col bg-card-gradient border border-border rounded-2xl p-7 shadow-card-soft">'
+            + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 text-brand/50 mb-4" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>'
+            + '<blockquote class="text-muted-foreground leading-relaxed flex-1">' + esc(d.depoimento) + '</blockquote>'
+            + '<figcaption class="mt-6 flex items-center gap-3">' + foto
+            + '<div><div class="font-display font-bold text-foreground">' + esc(d.nome) + '</div>'
+            + (meta ? '<div class="text-sm text-muted-foreground">' + meta + '</div>' : '') + '</div></figcaption>'
+            + '</figure>';
+        }).join('');
+        sec.classList.remove('hidden');
+      }).catch(function () { /* sem conexão: seção permanece oculta */ });
     })();
 
     // Fallback: se o arquivo do logo ainda não existir, mostra o nome da marca em texto.
