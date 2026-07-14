@@ -605,20 +605,27 @@
             + '</figure>';
         }).join('');
         sec.classList.remove('hidden');
-        requestAnimationFrame(function () {
+        // Um único gatilho no container (não depende de requestAnimationFrame,
+        // que navegadores adiam em abas em segundo plano)
+        grid.addEventListener('click', function (ev) {
+          var btn = ev.target.closest('[data-toggle]');
+          if (!btn) return;
+          var fig = btn.closest('figure');
+          var bq = fig ? fig.querySelector('blockquote') : null;
+          if (!bq) return;
+          var aberto = btn.getAttribute('data-aberto') === '1';
+          bq.style.cssText = aberto ? FECHADO : ABERTO;
+          btn.setAttribute('data-aberto', aberto ? '0' : '1');
+          btn.textContent = aberto ? 'Ler depoimento completo' : 'Mostrar menos';
+        });
+        // Esconde o botão nos textos que já cabem inteiros no card (só estética)
+        setTimeout(function () {
           grid.querySelectorAll('figure').forEach(function (fig) {
             var bq = fig.querySelector('blockquote');
             var btn = fig.querySelector('[data-toggle]');
-            if (!bq || !btn) return;
-            if (bq.scrollHeight <= bq.clientHeight + 4) { btn.style.display = 'none'; return; }
-            btn.addEventListener('click', function () {
-              var aberto = btn.getAttribute('data-aberto') === '1';
-              bq.style.cssText = aberto ? FECHADO : ABERTO;
-              btn.setAttribute('data-aberto', aberto ? '0' : '1');
-              btn.textContent = aberto ? 'Ler depoimento completo' : 'Mostrar menos';
-            });
+            if (bq && btn && bq.scrollHeight <= bq.clientHeight + 4) btn.style.display = 'none';
           });
-        });
+        }, 300);
       }).catch(function () { /* sem conexão: seção permanece oculta */ });
     })();
 
