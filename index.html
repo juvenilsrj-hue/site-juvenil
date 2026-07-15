@@ -470,28 +470,10 @@
 
     // Depoimentos aprovados (máximo 6): a seção só aparece se houver algum.
     // Cada card mostra o início e expande no "Ler depoimento completo".
-    // Teste visual: ?cards=branco ou ?cards=creme trocam o fundo dos cards.
     (function () {
       var sec = document.getElementById('depoimentos');
       var grid = document.getElementById('depoimentos-grid');
       if (!sec || !grid) return;
-      try {
-        var variante = new URLSearchParams(location.search).get('cards');
-        var paletas = {
-          branco: { fundo: '#FFFFFF', borda: '#E3DFD4', texto: '#475366', nome: '#13304E', meta: '#6B7686', botao: '#A8842F' },
-          creme:  { fundo: '#F6F1E7', borda: '#E4DCCB', texto: '#475366', nome: '#13304E', meta: '#6B7686', botao: '#A8842F' }
-        };
-        var p = paletas[variante];
-        if (p) document.head.insertAdjacentHTML('beforeend',
-          '<style>' +
-          '#depoimentos-grid figure{background:' + p.fundo + ' !important;border-color:' + p.borda + ' !important;}' +
-          '#depoimentos-grid blockquote{color:' + p.texto + ' !important;}' +
-          '#depoimentos-grid figcaption .font-display{color:' + p.nome + ' !important;}' +
-          '#depoimentos-grid figcaption .text-muted-foreground{color:' + p.meta + ' !important;}' +
-          '#depoimentos-grid [data-toggle]{color:' + p.botao + ' !important;}' +
-          '#depoimentos-grid figcaption{border-color:' + p.borda + ' !important;}' +
-          '</style>');
-      } catch (e) {}
       var FECHADO = 'display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;overflow:hidden;white-space:pre-line';
       var ABERTO = 'white-space:pre-line';
       function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
