@@ -83,10 +83,51 @@
     </div>
   </section>
 
+  <!-- NEWSLETTER -->
+  <section class="max-w-3xl mx-auto px-6 lg:px-10 pb-24">
+    <div class="bg-card-gradient border border-border rounded-2xl p-8 md:p-10 text-center shadow-card-soft">
+      <p class="text-brand text-sm font-semibold tracking-[0.22em] uppercase mb-3">Newsletter</p>
+      <h2 class="font-display font-black text-2xl md:text-3xl leading-tight mb-3">Receba em <span class="text-brand">primeira mão</span></h2>
+      <p class="text-muted-foreground mb-7 max-w-lg mx-auto">Conteúdos sobre vendas, pós-venda e liderança, antes de todo mundo.</p>
+      <form id="nl-form" class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+        <input id="nl-email" type="email" name="email" required placeholder="Seu melhor e-mail" class="flex-1 bg-background/60 border border-border rounded-lg px-5 py-3.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand transition-colors" />
+        <button type="submit" id="nl-btn" class="inline-flex items-center justify-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-7 py-3.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity whitespace-nowrap">Quero receber</button>
+      </form>
+      <p id="nl-msg" class="text-sm mt-4 min-h-[1.25rem]" role="status" aria-live="polite"></p>
+      <p class="text-xs text-muted-foreground">Sem spam. Você cancela quando quiser.</p>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="border-t border-border py-10 text-center text-sm text-muted-foreground">
     <a href="../index.html" class="font-display font-black text-foreground">Juvenill <span class="text-brand">Ribêiro</span><span class="text-brand">.</span></a>
     <p class="mt-2">© 2026 Juvenill. Todos os direitos reservados.</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function () {
+      var SB_URL = "https://mkhzsynndqnljczkggia.supabase.co";
+      var SB_KEY = "sb_publishable_d_Vjkmbj3g6JHO64W3iVOQ_vUq_Xqn0";
+      var client = (window.supabase && SB_URL) ? window.supabase.createClient(SB_URL, SB_KEY) : null;
+      var form = document.getElementById("nl-form");
+      var msg = document.getElementById("nl-msg");
+      var btn = document.getElementById("nl-btn");
+      if (!form) return;
+      function ok() { form.style.display = "none"; msg.style.color = "#D8AE54"; msg.textContent = "Pronto! Em breve você recebe as novidades."; }
+      function erro() { msg.style.color = "#e08a8a"; msg.textContent = "Não foi possível agora. Tente novamente em instantes."; btn.disabled = false; }
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = (document.getElementById("nl-email").value || "").trim();
+        if (!email || email.indexOf("@") < 1) return;
+        msg.style.color = ""; msg.textContent = "Enviando...";
+        btn.disabled = true;
+        if (!client) { ok(); return; }
+        client.from("newsletter").insert({ email: email, origem: "blog" }).then(function (r) {
+          if (r && r.error) erro(); else ok();
+        }, erro);
+      });
+    })();
+  </script>
 </body>
 </html>

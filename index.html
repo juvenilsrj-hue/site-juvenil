@@ -447,22 +447,6 @@
         <div class="text-center mt-12">
           <a href="blog/index.html" class="inline-flex items-center gap-2 border border-border bg-background/40 text-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-card hover:border-brand/40 transition-colors">Ver todos os artigos <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
         </div>
-
-        <!-- Newsletter (dentro do bloco do blog, sem caixa) -->
-        <div class="mt-14">
-          <div class="max-w-3xl mx-auto text-center">
-            <p class="text-brand text-sm font-semibold tracking-[0.22em] uppercase mb-3">Newsletter</p>
-            <h3 class="font-display font-black text-3xl md:text-4xl leading-tight mb-4">Receba em <span class="text-brand">primeira mão</span></h3>
-            <p class="text-lg text-muted-foreground mb-8 max-w-lg mx-auto">Conteúdos sobre vendas, pós-venda e liderança, antes de todo mundo.</p>
-            <!-- NEWSLETTER: quando escolher o provedor (MailerLite/Brevo/etc.), troque o comportamento do form pelo embed/action dele -->
-            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto" novalidate>
-              <input type="email" name="email" required placeholder="Seu melhor e-mail" class="flex-1 bg-background/60 border border-border rounded-lg px-5 py-3.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand transition-colors" />
-              <button type="submit" class="inline-flex items-center justify-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-7 py-3.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity whitespace-nowrap">Quero receber</button>
-            </form>
-            <p id="newsletter-ok" class="hidden text-brand font-semibold mt-4">Pronto! Em breve você recebe as novidades. 🎉</p>
-            <p class="text-xs text-muted-foreground mt-4">Sem spam. Você cancela quando quiser.</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -632,20 +616,6 @@
       });
       document.addEventListener('click', function (e) {
         if (!wrap.contains(e.target)) { menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false'); }
-      });
-    })();
-
-    // Newsletter (demo): mostra confirmação. Quando conectar o provedor, troque por embed/action dele.
-    (function () {
-      var form = document.getElementById('newsletter-form');
-      if (!form) return;
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var email = form.querySelector('input[name="email"]');
-        if (!email.value || email.value.indexOf('@') === -1) { email.focus(); return; }
-        form.classList.add('hidden');
-        var ok = document.getElementById('newsletter-ok');
-        if (ok) ok.classList.remove('hidden');
       });
     })();
   </script>
