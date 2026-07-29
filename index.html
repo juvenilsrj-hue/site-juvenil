@@ -333,9 +333,14 @@
       <div class="max-w-7xl mx-auto px-6 lg:px-10">
         <div class="max-w-3xl mb-14">
           <p class="text-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">Depoimentos</p>
-          <h2 class="font-display font-black text-4xl md:text-5xl leading-tight">O que dizem <span class="text-brand">sobre mim</span></h2>
+          <h2 class="font-display font-black text-4xl md:text-5xl leading-tight">Experiências de quem <span class="text-brand">trabalhou comigo</span></h2>
+          <p class="text-lg text-muted-foreground mt-5">Relatos de profissionais que acompanharam minha atuação em liderança, gestão e desenvolvimento de equipes.</p>
         </div>
         <div id="depoimentos-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div class="mt-12 text-center">
+          <p class="text-muted-foreground mb-4">Cada trajetória começa com um desafio diferente. O próximo passo é entender o seu.</p>
+          <a href="/diagnostico/#diagnostico" data-diagnostic-link class="inline-flex items-center gap-2 bg-brand-gradient text-brand-foreground font-semibold px-7 py-3.5 rounded-lg shadow-brand hover:opacity-90 transition-opacity"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="m9 14 2 2 4-4"></path></svg> Comece pelo diagnóstico</a>
+        </div>
         <div class="mt-16 border-t border-border/50" aria-hidden="true"></div>
       </div>
     </section>
@@ -485,7 +490,7 @@
     })();
 
     // Depoimentos aprovados (máximo 6): a seção só aparece se houver algum.
-    // Cada card mostra o início e expande no "Ler depoimento completo".
+    // Cada card mostra o início e expande no "Ver relato completo".
     (function () {
       var sec = document.getElementById('depoimentos');
       var grid = document.getElementById('depoimentos-grid');
@@ -498,14 +503,14 @@
       }).then(function (r) { return r.ok ? r.json() : []; }).then(function (rows) {
         if (!rows || !rows.length) return;
         grid.innerHTML = rows.map(function (d) {
-          var meta = [esc(d.cargo), esc(d.empresa)].filter(Boolean).join(' · ');
+          var meta = [esc(d.cargo), esc(d.empresa)].filter(Boolean).join(' | ');
           var foto = d.foto_url
             ? '<img src="' + esc(d.foto_url) + '" alt="' + esc(d.nome) + '" loading="lazy" class="w-12 h-12 rounded-full object-cover ring-1 ring-border shrink-0" />'
             : '<div class="w-12 h-12 rounded-full bg-brand/15 text-brand font-display font-black flex items-center justify-center shrink-0">' + esc((d.nome || '?').trim().charAt(0).toUpperCase()) + '</div>';
           return '<figure class="flex flex-col bg-card-gradient border border-border rounded-2xl p-7 shadow-card-soft">'
             + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 text-brand/50 mb-4" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>'
             + '<blockquote class="text-muted-foreground leading-relaxed" style="' + FECHADO + '">' + esc(d.depoimento) + '</blockquote>'
-            + '<button type="button" data-toggle class="text-brand text-sm font-semibold mt-3 text-left hover:underline">Ler depoimento completo</button>'
+            + '<button type="button" data-toggle class="text-brand text-sm font-semibold mt-3 text-left hover:underline">Ver relato completo</button>'
             + '<figcaption class="mt-5 pt-5 border-t border-border/50 flex items-center gap-3 mt-auto">' + foto
             + '<div><div class="font-display font-bold text-foreground">' + esc(d.nome) + '</div>'
             + (meta ? '<div class="text-sm text-muted-foreground">' + meta + '</div>' : '') + '</div></figcaption>'
@@ -523,7 +528,7 @@
           var aberto = btn.getAttribute('data-aberto') === '1';
           bq.style.cssText = aberto ? FECHADO : ABERTO;
           btn.setAttribute('data-aberto', aberto ? '0' : '1');
-          btn.textContent = aberto ? 'Ler depoimento completo' : 'Mostrar menos';
+          btn.textContent = aberto ? 'Ver relato completo' : 'Mostrar menos';
         });
         // Esconde o botão nos textos que já cabem inteiros no card (só estética)
         setTimeout(function () {
