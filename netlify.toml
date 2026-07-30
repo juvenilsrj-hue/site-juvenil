@@ -8,3 +8,45 @@
 # Garante que o Netlify não tente processar funções serverless (resto do Remix).
 [functions]
   directory = "_no_functions"
+
+# Redirecionamentos 301: endereços antigos dos artigos (títulos antigos)
+# apontam para os novos, preservando links já compartilhados e SEO.
+[[redirects]]
+  from = "/blog/nao-queremos-chefes-queremos-mentores.html"
+  to = "/blog/lider-que-nao-acompanha-vira-cobrador.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/nao-queremos-chefes-queremos-mentores"
+  to = "/blog/lider-que-nao-acompanha-vira-cobrador.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/processos-essenciais-ou-fardos-operacionais.html"
+  to = "/blog/processo-nao-engessa-protege-o-resultado.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/processos-essenciais-ou-fardos-operacionais"
+  to = "/blog/processo-nao-engessa-protege-o-resultado.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/a-maioria-desiste-no-silencio.html"
+  to = "/blog/cliente-compra-confianca.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/a-maioria-desiste-no-silencio"
+  to = "/blog/cliente-compra-confianca.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fracasso-na-prospeccao-nao-e-ignorancia.html"
+  to = "/blog/prospeccao-exige-rotina.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fracasso-na-prospeccao-nao-e-ignorancia"
+  to = "/blog/prospeccao-exige-rotina.html"
+  status = 301
